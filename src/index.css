@@ -57,11 +57,35 @@
   }
 
   [data-theme="light"] .card {
-    @apply bg-white shadow-md;
+    @apply bg-white text-gray-900 shadow-md;
   }
 
   [data-theme="light"] .nav-link {
     @apply text-gray-600 hover:text-gray-900;
+  }
+
+  [data-theme="light"] .nav-link.active {
+    @apply bg-accent-blue/20 text-gray-900;
+  }
+
+  [data-theme="light"] .bg-navy {
+    @apply bg-gray-100;
+  }
+
+  [data-theme="light"] .bg-navy-dark {
+    @apply bg-white;
+  }
+
+  [data-theme="light"] .bg-navy-light {
+    @apply bg-gray-50;
+  }
+
+  [data-theme="light"] .text-white {
+    @apply text-gray-900;
+  }
+
+  [data-theme="light"] .text-gray-400 {
+    @apply text-gray-500;
   }
 }
 
