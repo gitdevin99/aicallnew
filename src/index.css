@@ -9,10 +9,21 @@
   :root {
     --background: 0 0% 100%;
     --foreground: 222.2 84% 4.9%;
-    --primary: 214 100% 90%;
-    --primary-foreground: 210 40% 98%;
+    --card: 240 10% 3.9%;
+    --card-foreground: 0 0% 98%;
+    --primary: 0 0% 98%;
+    --primary-foreground: 240 5.9% 10%;
     --muted: 210 40% 96.1%;
     --muted-foreground: 215.4 16.3% 46.9%;
+  }
+
+  :root[data-theme="dark"] {
+    --background: 240 10% 3.9%;
+    --foreground: 0 0% 98%;
+    --card: 240 10% 3.9%;
+    --card-foreground: 0 0% 98%;
+    --primary: 0 0% 98%;
+    --primary-foreground: 240 5.9% 10%;
   }
 
   * {
@@ -21,6 +32,10 @@
 
   body {
     @apply bg-navy text-white font-['Inter'] antialiased;
+  }
+
+  body[data-theme="light"] {
+    @apply bg-gray-100 text-gray-900;
   }
 }
 
@@ -40,10 +55,22 @@
   .nav-link.active {
     @apply bg-accent-blue/10 text-white;
   }
+
+  [data-theme="light"] .card {
+    @apply bg-white shadow-md;
+  }
+
+  [data-theme="light"] .nav-link {
+    @apply text-gray-600 hover:text-gray-900;
+  }
 }
 
 @layer utilities {
   .glass {
     @apply bg-white/5 backdrop-blur-lg border border-white/10;
+  }
+
+  [data-theme="light"] .glass {
+    @apply bg-white/80 border-gray-200;
   }
 }

@@ -3,11 +3,14 @@ import { Sidebar } from "@/components/Sidebar";
 import { StatsCard } from "@/components/StatsCard";
 import { LeadCard } from "@/components/LeadCard";
 import { CallsChart } from "@/components/CallsChart";
+import { ThemeSwitcher } from "@/components/ThemeSwitcher";
+import { RecentActivity } from "@/components/RecentActivity";
 
 const Index = () => {
   return (
     <div className="min-h-screen bg-navy flex">
       <Sidebar />
+      <ThemeSwitcher />
       <main className="flex-1 pl-64 p-8">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
@@ -33,32 +36,38 @@ const Index = () => {
             />
           </div>
 
-          <div className="mb-8">
-            <div className="flex justify-between items-center mb-6">
-              <h2 className="text-xl font-semibold">Recent Leads</h2>
-              <button className="px-4 py-2 bg-accent-blue text-white rounded-lg hover:bg-accent-blue/80 transition-colors">
-                View All Leads
-              </button>
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
+            <div className="lg:col-span-2">
+              <div className="mb-6">
+                <div className="flex justify-between items-center mb-6">
+                  <h2 className="text-xl font-semibold">Recent Leads</h2>
+                  <button className="px-4 py-2 bg-accent-blue text-white rounded-lg hover:bg-accent-blue/80 transition-colors">
+                    View All Leads
+                  </button>
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <LeadCard
+                    name="John Smith"
+                    phone="+1 (555) 123-4567"
+                    status="active"
+                    lastContact="2024-02-08"
+                    score={85}
+                  />
+                  <LeadCard
+                    name="Sarah Johnson"
+                    phone="+1 (555) 987-6543"
+                    status="new"
+                    lastContact="2024-02-08"
+                    score={92}
+                  />
+                </div>
+              </div>
+              <CallsChart />
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <LeadCard
-                name="John Smith"
-                phone="+1 (555) 123-4567"
-                status="active"
-                lastContact="2024-02-08"
-                score={85}
-              />
-              <LeadCard
-                name="Sarah Johnson"
-                phone="+1 (555) 987-6543"
-                status="new"
-                lastContact="2024-02-08"
-                score={92}
-              />
+            <div>
+              <RecentActivity />
             </div>
           </div>
-
-          <CallsChart />
         </div>
       </main>
     </div>
