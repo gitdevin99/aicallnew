@@ -29,7 +29,7 @@ export function UserMenu() {
           <Button
             variant="ghost"
             className="w-full justify-start px-3 py-2 text-sm font-normal text-gray-300 hover:bg-gray-800 hover:text-white"
-            onClick={() => window.location.href = "/billing"}
+            onClick={() => window.location.href = "/app/billing"}
           >
             <CreditCard className="mr-2 h-4 w-4" />
             Billing

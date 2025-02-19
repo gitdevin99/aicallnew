@@ -93,7 +93,7 @@ export default function CampaignDetails() {
             <Button
               variant="ghost"
               size="icon"
-              onClick={() => navigate("/campaigns")}
+              onClick={() => navigate("/app/campaigns")}
               className="hover:bg-background"
             >
               <ArrowLeft className="h-5 w-5" />
@@ -159,34 +159,56 @@ export default function CampaignDetails() {
       </div>
 
       {/* Campaign Stats */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 p-2">
         {callStats.map((stat, index) => (
           <motion.div
             key={stat.label}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: index * 0.1 }}
+            whileHover={{ scale: 1.02, translateY: -5 }}
+            transition={{ duration: 0.2 }}
             className={cn(
-              "p-6 rounded-lg border border-border space-y-4 relative overflow-hidden group",
-              stat.bgColor
+              "p-6 rounded-2xl space-y-4 relative overflow-hidden group cursor-pointer",
+              "bg-white dark:bg-gray-900",
+              "shadow-[inset_0px_1px_1px_rgba(255,255,255,0.2),_4px_4px_8px_rgba(0,0,0,0.1),_-4px_-4px_8px_rgba(255,255,255,0.9)]",
+              "dark:shadow-[inset_0px_1px_1px_rgba(255,255,255,0.1),_4px_4px_8px_rgba(0,0,0,0.5),_-4px_-4px_8px_rgba(255,255,255,0.03)]",
+              "hover:shadow-[inset_0px_1px_1px_rgba(255,255,255,0.2),_6px_6px_12px_rgba(0,0,0,0.15),_-6px_-6px_12px_rgba(255,255,255,0.95)]",
+              "dark:hover:shadow-[inset_0px_1px_1px_rgba(255,255,255,0.1),_6px_6px_12px_rgba(0,0,0,0.6),_-6px_-6px_12px_rgba(255,255,255,0.04)]",
+              "transition-all duration-300"
             )}
           >
-            {/* Background pattern */}
-            <div className="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_30%_-50%,#000000_0%,transparent_50%)] dark:bg-[radial-gradient(circle_at_30%_-50%,#ffffff_0%,transparent_50%)]" />
+            {/* Gradient overlay */}
+            <div 
+              className={cn(
+                "absolute inset-0 opacity-10 transition-opacity duration-300 group-hover:opacity-20",
+                "bg-gradient-to-br",
+                stat.bgColor
+              )} 
+            />
             
-            <div className="space-y-2">
+            <div className="space-y-3 relative">
               <div className="flex items-center justify-between">
-                <div className="flex items-center gap-2">
-                  <div className={cn("transition-transform group-hover:scale-110", stat.color)}>
+                <div className="flex items-center gap-3">
+                  <div 
+                    className={cn(
+                      "p-2 rounded-xl transition-all duration-300",
+                      "bg-gray-100 dark:bg-gray-800",
+                      "shadow-[inset_2px_2px_4px_rgba(0,0,0,0.1),_-2px_-2px_4px_rgba(255,255,255,0.9)]",
+                      "dark:shadow-[inset_2px_2px_4px_rgba(0,0,0,0.5),_-2px_-2px_4px_rgba(255,255,255,0.03)]",
+                      "group-hover:shadow-[inset_3px_3px_6px_rgba(0,0,0,0.15),_-3px_-3px_6px_rgba(255,255,255,0.95)]",
+                      "dark:group-hover:shadow-[inset_3px_3px_6px_rgba(0,0,0,0.6),_-3px_-3px_6px_rgba(255,255,255,0.04)]",
+                      stat.color
+                    )}
+                  >
                     {stat.icon}
                   </div>
-                  <span className="text-muted-foreground text-sm font-medium">{stat.label}</span>
+                  <span className="text-gray-600 dark:text-gray-300 text-sm font-medium">{stat.label}</span>
                 </div>
                 {stat.description && (
                   <TooltipProvider>
                     <Tooltip>
                       <TooltipTrigger>
-                        <AlertCircle className="h-4 w-4 text-muted-foreground/40 opacity-0 group-hover:opacity-100 transition-opacity" />
+                        <AlertCircle className="h-4 w-4 text-gray-400 dark:text-gray-500 opacity-0 group-hover:opacity-100 transition-opacity" />
                       </TooltipTrigger>
                       <TooltipContent>
                         <p>{stat.description}</p>
@@ -195,7 +217,7 @@ export default function CampaignDetails() {
                   </TooltipProvider>
                 )}
               </div>
-              <div className="text-3xl font-bold tracking-tight">
+              <div className="text-4xl font-bold tracking-tight text-gray-900 dark:text-white transition-colors duration-300">
                 {stat.value.toLocaleString()}
               </div>
             </div>

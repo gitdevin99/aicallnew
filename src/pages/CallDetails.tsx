@@ -76,7 +76,7 @@ const CallDetails = () => {
         <Button
           variant="ghost"
           size="icon"
-          onClick={() => navigate("/calls")}
+          onClick={() => navigate("/app/calls")}
           className="shrink-0"
         >
           <ArrowLeft className="h-5 w-5" />

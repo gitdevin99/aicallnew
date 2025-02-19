@@ -39,7 +39,7 @@ const Actions = () => {
       </div>
 
       <div className="flex justify-end">
-        <Button className="gap-2" onClick={() => navigate("/actions/new")}>
+        <Button className="gap-2" onClick={() => navigate("/app/actions/new")}>
           <Plus className="h-4 w-4" />
           New Action
         </Button>

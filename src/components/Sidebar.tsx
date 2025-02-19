@@ -19,7 +19,11 @@ export const Sidebar = () => {
   const location = useLocation();
 
   const isActive = (path: string) => {
-    return location.pathname === path;
+    const currentPath = location.pathname.replace('/app', '');
+    if (path === '/') {
+      return currentPath === '/' || currentPath === '';
+    }
+    return currentPath === path || currentPath.startsWith(path + '/');
   };
 
   return (
@@ -35,49 +39,49 @@ export const Sidebar = () => {
         {/* Main Menu */}
         <ul className="space-y-1">
           <li>
-            <Link to="/" className={`nav-link ${isActive('/') ? 'active' : ''}`}>
+            <Link to="/app" className={`nav-link ${isActive('/') ? 'active' : ''}`}>
               <Home size={20} className="hover-glow" />
               <span>Home</span>
             </Link>
           </li>
           <li>
-            <Link to="/automation" className={`nav-link ${isActive('/automation') ? 'active' : ''}`}>
+            <Link to="/app/automation" className={`nav-link ${isActive('/automation') ? 'active' : ''}`}>
               <Zap size={20} className="hover-glow" />
               <span>Automation</span>
             </Link>
           </li>
           <li>
-            <Link to="/templates" className={`nav-link ${isActive('/templates') ? 'active' : ''}`}>
+            <Link to="/app/templates" className={`nav-link ${isActive('/templates') ? 'active' : ''}`}>
               <FileText size={20} className="hover-glow" />
               <span>Templates</span>
             </Link>
           </li>
           <li>
-            <Link to="/agents" className={`nav-link ${isActive('/agents') ? 'active' : ''}`}>
+            <Link to="/app/agents" className={`nav-link ${isActive('/agents') ? 'active' : ''}`}>
               <Users size={20} className="hover-glow" />
               <span>Agents</span>
             </Link>
           </li>
           <li>
-            <Link to="/campaigns" className={`nav-link ${isActive('/campaigns') ? 'active' : ''}`}>
+            <Link to="/app/campaigns" className={`nav-link ${isActive('/campaigns') ? 'active' : ''}`}>
               <PenTool size={20} className="hover-glow" />
               <span>Campaigns</span>
             </Link>
           </li>
           <li>
-            <Link to="/actions" className={`nav-link ${isActive('/actions') ? 'active' : ''}`}>
+            <Link to="/app/actions" className={`nav-link ${isActive('/actions') ? 'active' : ''}`}>
               <Building2 size={20} className="hover-glow" />
               <span>Actions</span>
             </Link>
           </li>
           <li>
-            <Link to="/calls" className={`nav-link ${isActive('/calls') ? 'active' : ''}`}>
+            <Link to="/app/calls" className={`nav-link ${isActive('/calls') ? 'active' : ''}`}>
               <Phone size={20} className="hover-glow" />
               <span>Calls</span>
             </Link>
           </li>
           <li>
-            <Link to="/crm" className={`nav-link ${isActive('/crm') ? 'active' : ''}`}>
+            <Link to="/app/crm" className={`nav-link ${isActive('/crm') ? 'active' : ''}`}>
               <Users size={20} className="hover-glow" />
               <span>CRM</span>
             </Link>
@@ -89,13 +93,13 @@ export const Sidebar = () => {
           <h2 className="text-sm font-medium text-gray-900 dark:text-white/70 px-2 mb-2">Phone numbers</h2>
           <ul className="space-y-1">
             <li>
-              <Link to="/buy-number" className={`nav-link ${isActive('/buy-number') ? 'active' : ''}`}>
+              <Link to="/app/buy-number" className={`nav-link ${isActive('/buy-number') ? 'active' : ''}`}>
                 <DollarSign size={20} className="hover-glow" />
                 <span>Buy Number</span>
               </Link>
             </li>
             <li>
-              <Link to="/manage-numbers" className={`nav-link ${isActive('/manage-numbers') ? 'active' : ''}`}>
+              <Link to="/app/manage-numbers" className={`nav-link ${isActive('/manage-numbers') ? 'active' : ''}`}>
                 <PhoneCall size={20} className="hover-glow" />
                 <span>Manage</span>
               </Link>

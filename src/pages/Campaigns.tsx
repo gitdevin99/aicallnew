@@ -95,7 +95,7 @@ const Campaigns = () => {
             <span>List</span>
           </div>
         </div>
-        <Button className="gap-2" variant="default" onClick={() => navigate("/campaigns/create")}>
+        <Button className="gap-2" variant="default" onClick={() => navigate("/app/campaigns/create")}>
           <Plus className="h-4 w-4" />
           New Campaign
         </Button>
@@ -148,7 +148,7 @@ const Campaigns = () => {
             {campaignsData.map((campaign) => (
               <tr 
                 key={campaign.name}
-                onClick={() => navigate(`/campaigns/${campaign.name.toLowerCase().replace(/ /g, '-')}`)} 
+                onClick={() => navigate(`/app/campaigns/${campaign.id}`)} 
                 className="group relative border-b border-gray-200/50 dark:border-gray-800/50 transition-all duration-300 cursor-pointer hover:bg-gray-50/80 dark:hover:bg-gray-800/80"
               >
                 <td className="relative py-4 px-6 z-20">

@@ -44,22 +44,22 @@ export const Layout = () => {
                 <main className="pl-[260px] pt-4 pr-4">
                   <Routes>
                     <Route path="/" element={<Index />} />
-                    <Route path="/automation" element={<Automation />} />
-                    <Route path="/templates" element={<Templates />} />
-                    <Route path="/agents" element={<Agents />} />
-                    <Route path="/campaigns" element={<Campaigns />} />
-                    <Route path="/campaigns/create" element={<CreateCampaign />} />
-                    <Route path="/campaigns/:id" element={<CampaignDetails />} />
-                    <Route path="/actions" element={<Actions />} />
-                    <Route path="/actions/new" element={<NewAction />} />
-                    <Route path="/calls" element={<Calls />} />
-                    <Route path="/calls/:id" element={<CallDetails />} />
-                    <Route path="/crm" element={<CRM />} />
-                    <Route path="/buy-number" element={<BuyNumber />} />
-                    <Route path="/manage-numbers" element={<ManageNumbers />} />
-                    <Route path="/settings" element={<Settings />} />
-                    <Route path="/billing" element={<Billing />} />
-                    <Route path="/agents/create" element={<CreateAgent />} />
+                    <Route path="automation" element={<Automation />} />
+                    <Route path="templates" element={<Templates />} />
+                    <Route path="agents" element={<Agents />} />
+                    <Route path="campaigns" element={<Campaigns />} />
+                    <Route path="campaigns/create" element={<CreateCampaign />} />
+                    <Route path="campaigns/:id" element={<CampaignDetails />} />
+                    <Route path="actions" element={<Actions />} />
+                    <Route path="actions/new" element={<NewAction />} />
+                    <Route path="calls" element={<Calls />} />
+                    <Route path="calls/:id" element={<CallDetails />} />
+                    <Route path="crm" element={<CRM />} />
+                    <Route path="buy-number" element={<BuyNumber />} />
+                    <Route path="manage-numbers" element={<ManageNumbers />} />
+                    <Route path="settings" element={<Settings />} />
+                    <Route path="billing" element={<Billing />} />
+                    <Route path="agents/create" element={<CreateAgent />} />
                     <Route path="*" element={<NotFound />} />
                   </Routes>
                 </main>

@@ -7,7 +7,10 @@ export default defineConfig({
   server: {
     host: "::",
     port: 8080,
+    proxy: {},
+    strictPort: true,
   },
+  base: "/",
   plugins: [
     react()
   ],

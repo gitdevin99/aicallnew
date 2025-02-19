@@ -36,7 +36,7 @@ export const CallTableRow = ({
   const handleRowClick = (e: React.MouseEvent) => {
     // Don't navigate if clicking on the dropdown menu
     if (!(e.target as HTMLElement).closest('.dropdown-trigger')) {
-      navigate(`/calls/${phoneNumber.replace(/[^0-9]/g, '')}`);
+      navigate(`/app/calls/${phoneNumber.replace(/[^0-9]/g, '')}`);
     }
   };
 
@@ -114,7 +114,7 @@ export const CallTableRow = ({
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
-              <DropdownMenuItem onClick={() => navigate(`/calls/${phoneNumber.replace(/[^0-9]/g, '')}`)}>View Details</DropdownMenuItem>
+              <DropdownMenuItem onClick={() => navigate(`/app/calls/${phoneNumber.replace(/[^0-9]/g, '')}`)}>View Details</DropdownMenuItem>
               <DropdownMenuItem>Download Recording</DropdownMenuItem>
               <DropdownMenuItem className="text-red-600 dark:text-red-400">
                 Delete

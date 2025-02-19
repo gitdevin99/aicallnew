@@ -51,7 +51,7 @@ const NewAction = () => {
 
   const handleCreate = () => {
     // TODO: Implement action creation
-    navigate("/actions");
+    navigate("/app/actions");
   };
 
   return (
@@ -66,7 +66,7 @@ const NewAction = () => {
         <Button
           variant="ghost"
           size="icon"
-          onClick={() => navigate("/actions")}
+          onClick={() => navigate("/app/actions")}
           className="shrink-0"
         >
           <ArrowLeft className="h-5 w-5" />
@@ -259,7 +259,7 @@ const NewAction = () => {
 
       {/* Footer */}
       <div className="flex items-center justify-end gap-4 pt-4">
-        <Button variant="outline" onClick={() => navigate("/actions")}>
+        <Button variant="outline" onClick={() => navigate("/app/actions")}>
           Cancel
         </Button>
         <Button onClick={handleCreate}>Create</Button>

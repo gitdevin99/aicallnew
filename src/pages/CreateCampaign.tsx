@@ -9,10 +9,13 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { FileText, Upload, ArrowLeft } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { LeadsTable } from "@/components/campaign/LeadsTable";
+import { TemplateBrowser } from "@/components/campaign/TemplateBrowser";
 
 export default function CreateCampaign() {
   const navigate = useNavigate();
   const [timezone, setTimezone] = useState("UTC-4");
+  const [templateBrowserOpen, setTemplateBrowserOpen] = useState(false);
+  const [firstMessage, setFirstMessage] = useState("");
   const [activeDays, setActiveDays] = useState({
     Mon: true,
     Tue: true,
@@ -44,7 +47,7 @@ export default function CreateCampaign() {
             <Button
               variant="ghost"
               size="icon"
-              onClick={() => navigate("/campaigns")}
+              onClick={() => navigate("/app/campaigns")}
               className="hover:bg-background"
             >
               <ArrowLeft className="h-5 w-5" />
@@ -54,7 +57,7 @@ export default function CreateCampaign() {
           <p className="text-muted-foreground">Set up your outbound campaign configuration</p>
         </div>
         <div className="flex gap-2">
-          <Button variant="outline" onClick={() => navigate("/campaigns")}>
+          <Button variant="outline" onClick={() => navigate("/app/campaigns")}>
             Cancel
           </Button>
           <Button>
@@ -96,7 +99,12 @@ export default function CreateCampaign() {
         <div className="space-y-4">
           <div className="flex justify-between items-center">
             <h3 className="text-lg font-semibold">First Message</h3>
-            <Button variant="outline" size="sm" className="gap-2">
+            <Button 
+              variant="outline" 
+              size="sm" 
+              className="gap-2"
+              onClick={() => setTemplateBrowserOpen(true)}
+            >
               <FileText className="h-4 w-4" />
               Browse Templates
             </Button>
@@ -104,6 +112,13 @@ export default function CreateCampaign() {
           <Textarea
             placeholder="Hi, {customer.name}! This is {agent.name} from {company.name}."
             className="min-h-[100px] bg-muted/50"
+            value={firstMessage}
+            onChange={(e) => setFirstMessage(e.target.value)}
+          />
+          <TemplateBrowser 
+            open={templateBrowserOpen}
+            onOpenChange={setTemplateBrowserOpen}
+            onSelectTemplate={setFirstMessage}
           />
         </div>
 

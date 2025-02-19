@@ -71,7 +71,7 @@ const Agents = () => {
         <Button
           className="gap-2"
           variant="default"
-          onClick={() => navigate('/agents/create')}
+          onClick={() => navigate('/app/agents/create')}
         >
           <Plus className="h-4 w-4" />
           Create New Agent

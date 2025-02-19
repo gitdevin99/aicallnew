@@ -81,11 +81,11 @@ export default function ManageNumbers() {
       </div>
 
       {/* Table */}
-      <div className="relative overflow-x-auto rounded-xl bg-[#0f1623] shadow-[inset_0px_0px_20px_rgba(0,0,0,0.25)] dark:shadow-[inset_0px_0px_20px_rgba(255,255,255,0.05)] border border-gray-800/50 group/table transition-all duration-300">
+      <div className="relative overflow-x-auto rounded-xl bg-white dark:bg-[#0f1623] shadow-md dark:shadow-[inset_0px_0px_20px_rgba(255,255,255,0.05)] border border-gray-200 dark:border-gray-800/50 group/table transition-all duration-300">
         <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 via-transparent to-purple-500/5 opacity-0 group-hover/table:opacity-100 transition-opacity duration-500"></div>
         <table className="w-full table-auto border-collapse">
           <thead>
-            <tr className="relative border-b border-gray-800/50 bg-[#0f1623]">
+            <tr className="relative border-b border-gray-200 dark:border-gray-800/50 bg-gray-50 dark:bg-[#0f1623]">
               <td className="absolute inset-0 bg-gradient-to-r from-blue-500/5 to-transparent opacity-50"></td>
               <th className="px-6 py-4 text-left text-sm font-medium text-gray-500 dark:text-gray-400">Country</th>
               <th className="px-6 py-4 text-left text-sm font-medium text-gray-500 dark:text-gray-400">SMS</th>
@@ -102,24 +102,24 @@ export default function ManageNumbers() {
             {demoNumbers.map((number, index) => (
               <tr 
                 key={number.phoneNumber}
-                className={`group relative border-b border-gray-800/50 transition-all duration-300 hover:bg-[#141b29] ${index === demoNumbers.length - 1 ? '' : 'border-b'}`}
+                className={`group relative border-b border-gray-200 dark:border-gray-800/50 transition-all duration-300 hover:bg-gray-50 dark:hover:bg-[#141b29] ${index === demoNumbers.length - 1 ? '' : 'border-b'}`}
               >
                 <td className="absolute inset-0 bg-gradient-to-r from-blue-500/0 to-purple-500/0 opacity-0 group-hover:opacity-10 transition-opacity duration-300"></td>
-                <td className="relative px-6 py-4 text-sm text-gray-100 transition-colors duration-300 group-hover:text-blue-400">
+                <td className="relative px-6 py-4 text-sm text-gray-900 dark:text-gray-100 transition-colors duration-300 group-hover:text-blue-600 dark:group-hover:text-blue-400">
                   <div className="flex items-center justify-center">
                     <CountryFlag country={number.country} />
                   </div>
                 </td>
                 <td className="relative px-6 py-4 text-sm">
-                  <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium transition-all duration-300 ${number.smsCapable ? 'bg-green-900/30 text-green-400 group-hover:bg-green-900/50 group-hover:text-green-300' : 'bg-gray-800 text-gray-400 group-hover:bg-gray-700 group-hover:text-gray-300'}`}>
+                  <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium transition-all duration-300 ${number.smsCapable ? 'bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 group-hover:bg-green-200 dark:group-hover:bg-green-900/50 group-hover:text-green-800 dark:group-hover:text-green-300' : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-400 group-hover:bg-gray-200 dark:group-hover:bg-gray-700 group-hover:text-gray-800 dark:group-hover:text-gray-300'}`}>
                     {number.smsCapable ? 'Yes' : 'No'}
                   </span>
                 </td>
-                <td className="px-6 py-4 text-sm font-medium text-gray-900 dark:text-gray-100">{number.phoneNumber}</td>
-                <td className="relative px-6 py-4 text-sm text-gray-100 transition-colors duration-300 group-hover:text-blue-400">{number.type}</td>
-                <td className="relative px-6 py-4 text-sm text-gray-100 transition-colors duration-300 group-hover:text-blue-400">{number.campaignName}</td>
-                <td className="relative px-6 py-4 text-sm text-gray-100 transition-colors duration-300 group-hover:text-blue-400">{number.renewsAt}</td>
-                <td className="relative px-6 py-4 text-sm text-gray-100 transition-colors duration-300 group-hover:text-blue-400">{number.activeUntil}</td>
+                <td className="px-6 py-4 text-sm font-medium text-gray-900 dark:text-gray-100 group-hover:text-blue-600 dark:group-hover:text-blue-400">{number.phoneNumber}</td>
+                <td className="relative px-6 py-4 text-sm text-gray-900 dark:text-gray-100 transition-colors duration-300 group-hover:text-blue-600 dark:group-hover:text-blue-400">{number.type}</td>
+                <td className="relative px-6 py-4 text-sm text-gray-900 dark:text-gray-100 transition-colors duration-300 group-hover:text-blue-600 dark:group-hover:text-blue-400">{number.campaignName}</td>
+                <td className="relative px-6 py-4 text-sm text-gray-900 dark:text-gray-100 transition-colors duration-300 group-hover:text-blue-600 dark:group-hover:text-blue-400">{number.renewsAt}</td>
+                <td className="relative px-6 py-4 text-sm text-gray-900 dark:text-gray-100 transition-colors duration-300 group-hover:text-blue-600 dark:group-hover:text-blue-400">{number.activeUntil}</td>
                 <td className="px-6 py-4 text-sm text-gray-500 dark:text-gray-400">{number.createdAt}</td>
                 <td className="relative px-6 py-4 text-right text-sm font-medium">
                   <Button 
