@@ -13,6 +13,7 @@ import {
 } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 import { ThemeToggle } from "./theme-toggle";
+import { UserMenu } from "./UserMenu";
 
 export const Sidebar = () => {
   const location = useLocation();
@@ -128,9 +129,7 @@ export const Sidebar = () => {
             <h3 className="font-medium text-sm text-gray-900 dark:text-white">John Doe</h3>
             <p className="text-gray-500 dark:text-gray-400 text-xs">Premium User</p>
           </div>
-          <Link to="/settings" className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-navy-light transition-colors">
-            <Settings size={18} className="text-gray-400 hover:text-accent-blue transition-colors hover-glow" />
-          </Link>
+          <UserMenu />
         </div>
       </div>
     </aside>

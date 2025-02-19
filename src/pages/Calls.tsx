@@ -1,6 +1,133 @@
+import React, { useState } from "react";
 import { motion } from "framer-motion";
+import { Button } from "@/components/ui/button";
+import { AdvancedFiltersDialog, AdvancedFilters } from "@/components/AdvancedFiltersDialog";
+import { Input } from "@/components/ui/input";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { Info, Download, SlidersHorizontal } from "lucide-react";
+import { CallTableRow } from "@/components/CallTableRow";
+
+const callsData = [
+  {
+    phoneNumber: "+1 (555) 123-4567",
+    status: "completed",
+    type: "outbound",
+    duration: "3:00",
+    agent: "Sarah Wilson",
+    campaign: "Summer Outreach",
+    date: "Feb 10",
+    time: "10:30 AM",
+    credits: 2,
+  },
+  {
+    phoneNumber: "+1 (555) 987-6543",
+    status: "triggered",
+    type: "outbound",
+    duration: "0:00",
+    agent: "John Doe",
+    campaign: "Winter Campaign",
+    date: "Feb 10",
+    time: "10:45 AM",
+    credits: 0,
+  },
+  {
+    phoneNumber: "+1 (555) 456-7890",
+    status: "failed",
+    type: "outbound",
+    duration: "0:15",
+    agent: "Emma Thompson",
+    campaign: "Spring Sales",
+    date: "Feb 10",
+    time: "11:00 AM",
+    credits: 1,
+  },
+  {
+    phoneNumber: "+1 (555) 234-5678",
+    status: "completed",
+    type: "inbound",
+    duration: "6:00",
+    agent: "Sarah Wilson",
+    campaign: "Summer Outreach",
+    date: "Feb 10",
+    time: "11:15 AM",
+    credits: 3,
+  },
+  {
+    phoneNumber: "+1 (555) 345-6789",
+    status: "completed",
+    type: "outbound",
+    duration: "4:00",
+    agent: "John Doe",
+    campaign: "Winter Campaign",
+    date: "Feb 10",
+    time: "11:30 AM",
+    credits: 2,
+  },
+  {
+    phoneNumber: "+1 (555) 567-8901",
+    status: "triggered",
+    type: "outbound",
+    duration: "0:00",
+    agent: "Emma Thompson",
+    campaign: "Spring Sales",
+    date: "Feb 10",
+    time: "11:45 AM",
+    credits: 0,
+  },
+  {
+    phoneNumber: "+1 (555) 678-9012",
+    status: "failed",
+    type: "outbound",
+    duration: "0:30",
+    agent: "Sarah Wilson",
+    campaign: "Summer Outreach",
+    date: "Feb 10",
+    time: "12:00 PM",
+    credits: 1,
+  },
+  {
+    phoneNumber: "+1 (555) 789-0123",
+    status: "completed",
+    type: "inbound",
+    duration: "7:00",
+    agent: "John Doe",
+    campaign: "Winter Campaign",
+    date: "Feb 10",
+    time: "12:15 PM",
+    credits: 4,
+  },
+  {
+    phoneNumber: "+1 (555) 890-1234",
+    status: "completed",
+    type: "outbound",
+    duration: "5:00",
+    agent: "Emma Thompson",
+    campaign: "Spring Sales",
+    date: "Feb 10",
+    time: "12:30 PM",
+    credits: 3,
+  },
+  {
+    phoneNumber: "+1 (555) 901-2345",
+    status: "triggered",
+    type: "outbound",
+    duration: "0:00",
+    agent: "Sarah Wilson",
+    campaign: "Summer Outreach",
+    date: "Feb 10",
+    time: "12:45 PM",
+    credits: 0,
+  },
+];
 
 const Calls = () => {
+  const [showAdvancedFilters, setShowAdvancedFilters] = useState(false);
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -8,17 +135,192 @@ const Calls = () => {
       transition={{ duration: 0.5 }}
       className="space-y-6"
     >
-      <div className="flex justify-between items-center">
-        <h1 className="text-3xl font-bold text-gray-900 dark:text-white">Calls</h1>
+      <div className="flex items-center justify-between">
+        <div className="flex items-center gap-2">
+          <h1 className="text-3xl font-bold text-gray-900 dark:text-gray-100">Calls</h1>
+          <Info className="h-5 w-5 text-gray-400" />
+        </div>
+        <Button variant="outline" className="gap-2">
+          <Download className="h-4 w-4" />
+          Export
+        </Button>
       </div>
-      
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {/* Content will go here */}
-        <div className="glassmorphic p-6 rounded-xl">
-          <h2 className="text-xl font-semibold mb-4">Coming Soon</h2>
-          <p className="text-gray-600 dark:text-gray-400">
-            Call management features are currently under development. Stay tuned for updates!
-          </p>
+
+      <p className="text-gray-500 dark:text-gray-400">
+        Manage and analyze all your call records in one place
+      </p>
+
+      <div className="flex items-center gap-4 mb-4">
+        <div className="flex-1">
+          <Input
+            type="search"
+            placeholder="Search by phone number, agent, or campaign..."
+            className="bg-white dark:bg-transparent border-gray-200 dark:border-gray-800 text-gray-900 dark:text-gray-100 placeholder:text-gray-500 dark:placeholder:text-gray-400"
+          />
+        </div>
+      </div>
+
+      <div className="grid grid-cols-4 gap-4">
+        <div>
+          <label className="block text-sm font-medium text-gray-500 dark:text-gray-400 mb-2">
+            Status
+          </label>
+          <Select>
+            <SelectTrigger className="bg-white dark:bg-transparent border-gray-200 dark:border-gray-800 text-gray-900 dark:text-gray-100">
+              <SelectValue placeholder="Select statuses" />
+            </SelectTrigger>
+            <SelectContent className="bg-white dark:bg-gray-900 border-gray-200 dark:border-gray-800">
+              <SelectItem className="text-gray-900 dark:text-gray-100" value="all">All</SelectItem>
+              <SelectItem className="text-gray-900 dark:text-gray-100" value="completed">Completed</SelectItem>
+              <SelectItem className="text-gray-900 dark:text-gray-100" value="triggered">Triggered</SelectItem>
+              <SelectItem className="text-gray-900 dark:text-gray-100" value="failed">Failed</SelectItem>
+            </SelectContent>
+          </Select>
+        </div>
+        <div>
+          <label className="block text-sm font-medium text-gray-500 dark:text-gray-400 mb-2">
+            Call Type
+          </label>
+          <Select>
+            <SelectTrigger className="bg-white dark:bg-transparent border-gray-200 dark:border-gray-800 text-gray-900 dark:text-gray-100">
+              <SelectValue placeholder="All" />
+            </SelectTrigger>
+            <SelectContent className="bg-white dark:bg-gray-900 border-gray-200 dark:border-gray-800">
+              <SelectItem className="text-gray-900 dark:text-gray-100" value="all">All</SelectItem>
+              <SelectItem className="text-gray-900 dark:text-gray-100" value="inbound">Inbound</SelectItem>
+              <SelectItem className="text-gray-900 dark:text-gray-100" value="outbound">Outbound</SelectItem>
+            </SelectContent>
+          </Select>
+        </div>
+        <div>
+          <label className="block text-sm font-medium text-gray-500 dark:text-gray-400 mb-2">
+            Campaign
+          </label>
+          <Select>
+            <SelectTrigger className="bg-white dark:bg-transparent border-gray-200 dark:border-gray-800 text-gray-900 dark:text-gray-100">
+              <SelectValue placeholder="All" />
+            </SelectTrigger>
+            <SelectContent className="bg-white dark:bg-gray-900 border-gray-200 dark:border-gray-800">
+              <SelectItem className="text-gray-900 dark:text-gray-100" value="all">All</SelectItem>
+              <SelectItem className="text-gray-900 dark:text-gray-100" value="summer">Summer Outreach</SelectItem>
+              <SelectItem className="text-gray-900 dark:text-gray-100" value="winter">Winter Campaign</SelectItem>
+              <SelectItem className="text-gray-900 dark:text-gray-100" value="spring">Spring Sales</SelectItem>
+            </SelectContent>
+          </Select>
+        </div>
+        <div>
+          <label className="block text-sm font-medium text-gray-500 dark:text-gray-400 mb-2">
+            Agent
+          </label>
+          <Select>
+            <SelectTrigger className="bg-white dark:bg-transparent border-gray-200 dark:border-gray-800 text-gray-900 dark:text-gray-100">
+              <SelectValue placeholder="All" />
+            </SelectTrigger>
+            <SelectContent className="bg-white dark:bg-gray-900 border-gray-200 dark:border-gray-800">
+              <SelectItem className="text-gray-900 dark:text-gray-100" value="all">All</SelectItem>
+              <SelectItem className="text-gray-900 dark:text-gray-100" value="sarah">Sarah Wilson</SelectItem>
+              <SelectItem className="text-gray-900 dark:text-gray-100" value="john">John Doe</SelectItem>
+              <SelectItem className="text-gray-900 dark:text-gray-100" value="emma">Emma Thompson</SelectItem>
+            </SelectContent>
+          </Select>
+        </div>
+      </div>
+
+      <div className="flex items-center justify-between">
+        <Button 
+          variant="outline" 
+          className="text-sm border-gray-200 dark:border-gray-800"
+        >
+          Reset Filters
+        </Button>
+        <div className="flex items-center gap-4">
+          <Button 
+            variant="outline" 
+            className="text-sm gap-2 border-gray-200 dark:border-gray-800"
+            onClick={() => setShowAdvancedFilters(true)}
+          >
+            <SlidersHorizontal className="h-4 w-4" />
+            Advanced Filters
+          </Button>
+          <AdvancedFiltersDialog
+            open={showAdvancedFilters}
+            onOpenChange={setShowAdvancedFilters}
+            onApplyFilters={(filters: AdvancedFilters) => {
+              console.log('Applied filters:', filters);
+              // TODO: Apply filters to the calls list
+            }}
+          />
+          <Button className="text-sm bg-blue-500 hover:bg-blue-600 text-white">
+            Apply Filters
+          </Button>
+        </div>
+      </div>
+
+      <div className="relative rounded-lg border border-gray-200/50 dark:border-gray-800/50 bg-white/80 dark:bg-gray-900/80 transition-all duration-300">
+        <div className="absolute inset-0 bg-gradient-to-br from-gray-50/80 to-white/80 dark:from-gray-800/80 dark:to-gray-900/80 opacity-20"></div>
+        
+        {/* Scroll Container */}
+        <div className="overflow-x-auto scrollbar-thin scrollbar-thumb-gray-300 hover:scrollbar-thumb-gray-400 dark:scrollbar-thumb-gray-600 dark:hover:scrollbar-thumb-gray-500">
+          <div className="min-w-[1600px] w-full">
+            <table className="w-full">
+          <thead>
+            <tr className="relative border-b border-gray-200/50 dark:border-gray-800/50 bg-gray-50/95 dark:bg-gray-900/95">
+              <td className="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-transparent dark:from-blue-500/20 dark:to-transparent opacity-20"></td>
+              <th className="text-left py-3 px-6 text-gray-700 dark:text-gray-200 font-semibold relative z-10 w-[250px]">PHONE NUMBER</th>
+              <th className="text-left py-3 px-6 text-gray-700 dark:text-gray-200 font-semibold relative z-10 w-[150px]">STATUS</th>
+              <th className="text-left py-3 px-6 text-gray-700 dark:text-gray-200 font-semibold relative z-10 w-[150px]">TYPE</th>
+              <th className="text-left py-3 px-6 text-gray-700 dark:text-gray-200 font-semibold relative z-10 w-[120px]">DURATION</th>
+              <th className="text-left py-3 px-6 text-gray-700 dark:text-gray-200 font-semibold relative z-10 w-[200px]">AGENT</th>
+              <th className="text-left py-3 px-6 text-gray-700 dark:text-gray-200 font-semibold relative z-10 w-[250px]">CAMPAIGN</th>
+              <th className="text-left py-3 px-6 text-gray-700 dark:text-gray-200 font-semibold relative z-10 w-[180px]">DATE</th>
+              <th className="text-left py-3 px-6 text-gray-700 dark:text-gray-200 font-semibold relative z-10 w-[120px]">CREDITS</th>
+              <th className="w-[80px] relative z-10"></th>
+            </tr>
+          </thead>
+          <tbody>
+            {callsData.map((call) => (
+              <CallTableRow
+                key={call.phoneNumber}
+                {...call}
+              />
+            ))}
+          </tbody>
+            </table>
+          </div>
+        </div>
+        <div className="p-4 border-t border-gray-200 dark:border-gray-800 bg-white dark:bg-transparent flex items-center justify-between text-sm">
+          <div className="flex items-center gap-2 text-gray-500 dark:text-gray-400">
+            <span>Rows per page:</span>
+            <Select defaultValue="10">
+              <SelectTrigger className="w-16 h-8">
+                <SelectValue />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="10">10</SelectItem>
+                <SelectItem value="20">20</SelectItem>
+                <SelectItem value="50">50</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
+          <div className="flex items-center gap-4 text-gray-500 dark:text-gray-400">
+            <Button
+              variant="ghost"
+              size="sm"
+              className="hover:text-gray-900 dark:hover:text-gray-100 h-8"
+              disabled
+            >
+              Previous
+            </Button>
+            <span>Page 1 of 1</span>
+            <Button
+              variant="ghost"
+              size="sm"
+              className="hover:text-gray-900 dark:hover:text-gray-100 h-8"
+              disabled
+            >
+              Next
+            </Button>
+          </div>
         </div>
       </div>
     </motion.div>

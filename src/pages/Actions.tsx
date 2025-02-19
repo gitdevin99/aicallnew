@@ -1,6 +1,28 @@
 import { motion } from "framer-motion";
+import { Button } from "@/components/ui/button";
+import { Plus } from "lucide-react";
+import { ActionTableRow } from "@/components/ActionTableRow";
+import { useNavigate } from "react-router-dom";
+
+const actionsData = [
+  {
+    name: "Add customer query",
+    description: "Add a customer query to the database",
+    type: "Custom",
+    createdAt: "Jan 15, 2025",
+    lastUsed: "Feb 01, 2025",
+  },
+  {
+    name: "Update user status",
+    description: "Update the status of a user in the CRM",
+    type: "Custom",
+    createdAt: "Jan 20, 2025",
+    lastUsed: "Never",
+  },
+];
 
 const Actions = () => {
+  const navigate = useNavigate();
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -8,18 +30,42 @@ const Actions = () => {
       transition={{ duration: 0.5 }}
       className="space-y-6"
     >
-      <div className="flex justify-between items-center">
-        <h1 className="text-3xl font-bold text-gray-900 dark:text-white">Actions</h1>
+      <div className="space-y-1">
+        <h1 className="text-3xl font-bold text-gray-900 dark:text-gray-100">Actions</h1>
+        <p className="text-gray-500 dark:text-gray-400">
+          Actions are the building blocks of your workflows. They are used to integrate with
+          external APIs and services. The agents will use these actions to perform their tasks.
+        </p>
       </div>
-      
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {/* Content will go here */}
-        <div className="glassmorphic p-6 rounded-xl">
-          <h2 className="text-xl font-semibold mb-4">Coming Soon</h2>
-          <p className="text-gray-600 dark:text-gray-400">
-            Action management features are currently under development. Stay tuned for updates!
-          </p>
-        </div>
+
+      <div className="flex justify-end">
+        <Button className="gap-2" onClick={() => navigate("/actions/new")}>
+          <Plus className="h-4 w-4" />
+          New Action
+        </Button>
+      </div>
+
+      <div className="rounded-lg border border-gray-200 dark:border-gray-800 overflow-hidden">
+        <table className="w-full">
+          <thead>
+            <tr className="border-b border-gray-200 dark:border-gray-800 bg-gray-50 dark:bg-gray-900/50">
+              <th className="text-left py-3 px-4 text-gray-500 dark:text-gray-400 font-medium">ACTION NAME</th>
+              <th className="text-left py-3 px-4 text-gray-500 dark:text-gray-400 font-medium">DESCRIPTION</th>
+              <th className="text-left py-3 px-4 text-gray-500 dark:text-gray-400 font-medium">TYPE</th>
+              <th className="text-left py-3 px-4 text-gray-500 dark:text-gray-400 font-medium">CREATED AT</th>
+              <th className="text-left py-3 px-4 text-gray-500 dark:text-gray-400 font-medium">LAST USED</th>
+              <th className="w-[48px]"></th>
+            </tr>
+          </thead>
+          <tbody>
+            {actionsData.map((action) => (
+              <ActionTableRow
+                key={action.name}
+                {...action}
+              />
+            ))}
+          </tbody>
+        </table>
       </div>
     </motion.div>
   );

@@ -14,6 +14,12 @@ import CRM from "@/pages/CRM";
 import BuyNumber from "@/pages/BuyNumber";
 import ManageNumbers from "@/pages/ManageNumbers";
 import Settings from "@/pages/Settings";
+import Billing from "@/pages/Billing";
+import CreateAgent from "@/pages/CreateAgent";
+import CreateCampaign from "@/pages/CreateCampaign";
+import CampaignDetails from "@/pages/CampaignDetails";
+import NewAction from "@/pages/NewAction";
+import CallDetails from "@/pages/CallDetails";
 
 interface LayoutProps {
 }
@@ -42,12 +48,18 @@ export const Layout = () => {
                     <Route path="/templates" element={<Templates />} />
                     <Route path="/agents" element={<Agents />} />
                     <Route path="/campaigns" element={<Campaigns />} />
+                    <Route path="/campaigns/create" element={<CreateCampaign />} />
+                    <Route path="/campaigns/:id" element={<CampaignDetails />} />
                     <Route path="/actions" element={<Actions />} />
+                    <Route path="/actions/new" element={<NewAction />} />
                     <Route path="/calls" element={<Calls />} />
+                    <Route path="/calls/:id" element={<CallDetails />} />
                     <Route path="/crm" element={<CRM />} />
                     <Route path="/buy-number" element={<BuyNumber />} />
                     <Route path="/manage-numbers" element={<ManageNumbers />} />
                     <Route path="/settings" element={<Settings />} />
+                    <Route path="/billing" element={<Billing />} />
+                    <Route path="/agents/create" element={<CreateAgent />} />
                     <Route path="*" element={<NotFound />} />
                   </Routes>
                 </main>
