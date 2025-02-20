@@ -9,14 +9,31 @@ import {
   DollarSign,
   PhoneCall,
   Settings,
-  User
+  User,
+  Menu,
+  X
 } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 import { ThemeToggle } from "./theme-toggle";
 import { UserMenu } from "./UserMenu";
+import { useState, useEffect } from "react";
 
 export const Sidebar = () => {
   const location = useLocation();
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 1024);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 1024);
+      if (window.innerWidth >= 1024) {
+        setIsMobileMenuOpen(false);
+      }
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   const isActive = (path: string) => {
     const currentPath = location.pathname.replace('/app', '');
@@ -26,8 +43,34 @@ export const Sidebar = () => {
     return currentPath === path || currentPath.startsWith(path + '/');
   };
 
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
+
   return (
-    <aside className="fixed left-0 top-0 bottom-0 w-64 flex flex-col border-r">
+    <>
+      {/* Mobile Menu Button */}
+      <button
+        onClick={toggleMobileMenu}
+        className="lg:hidden fixed right-4 top-4 z-50 p-2 rounded-md bg-primary hover:bg-primary/90 text-white"
+      >
+        {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+      </button>
+
+      {/* Overlay */}
+      {isMobileMenuOpen && (
+        <div
+          className="fixed inset-0 bg-black/50 z-40 lg:hidden"
+          onClick={() => setIsMobileMenuOpen(false)}
+        />
+      )}
+
+      <aside
+        className={`fixed left-0 top-0 bottom-0 w-[240px] sm:w-[220px] lg:w-64 flex flex-col border-r
+                    bg-white dark:bg-navy shadow-lg lg:shadow-none
+                    transition-transform duration-300 ease-in-out z-50
+                    ${isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'}`}
+      >
       {/* Header */}
       <div className="p-4 flex items-center justify-between">
         <h1 className="text-xl font-semibold text-gray-900 dark:text-white">Dashboard</h1>
@@ -137,5 +180,6 @@ export const Sidebar = () => {
         </div>
       </div>
     </aside>
+    </>
   );
 };

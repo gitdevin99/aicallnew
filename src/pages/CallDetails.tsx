@@ -69,10 +69,10 @@ const CallDetails = () => {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
-      className="space-y-6"
+      className="space-y-8 p-6 sm:p-8 lg:p-10"
     >
       {/* Header */}
-      <div className="flex items-center gap-4">
+      <div className="flex items-center gap-6">
         <Button
           variant="ghost"
           size="icon"
@@ -98,8 +98,8 @@ const CallDetails = () => {
       />
 
       {/* Call Details and Assistant Info */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <Card>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <Card className="h-full">
           <CardHeader>
             <CardTitle>Call Details</CardTitle>
           </CardHeader>
@@ -170,13 +170,13 @@ const CallDetails = () => {
       </div>
 
       {/* Input and Extracted Variables */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <Card>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <Card className="h-full">
           <CardHeader>
             <CardTitle>Input Variables</CardTitle>
           </CardHeader>
-          <CardContent>
-            <div className="space-y-4">
+          <CardContent className="pt-6">
+            <div className="space-y-6">
               {callData.inputVariables.map((variable) => (
                 <div key={variable.name}>
                   <div className="text-sm font-medium text-primary">
@@ -199,8 +199,8 @@ const CallDetails = () => {
               </Button>
             </div>
           </CardHeader>
-          <CardContent>
-            <div className="space-y-4">
+          <CardContent className="pt-6">
+            <div className="space-y-6">
               {callData.extractedVariables.map((variable) => (
                 <div key={variable.name}>
                   <div className="text-sm font-medium text-primary">

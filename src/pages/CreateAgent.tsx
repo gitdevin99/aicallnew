@@ -40,7 +40,7 @@ export default function CreateAgent() {
       animate={{ opacity: 1, y: 0 }}
       className="min-h-screen bg-background"
     >
-      <div className="max-w-7xl mx-auto px-4 py-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: -20 }}
@@ -55,9 +55,11 @@ export default function CreateAgent() {
         </motion.div>
 
         {/* Main Content */}
-        <div className="flex gap-8">
+        <div className="flex flex-col lg:flex-row gap-6 lg:gap-8">
           {/* Sidebar */}
-          <div className="w-64 shrink-0">
+          <div className="lg:w-64 lg:shrink-0 overflow-x-auto lg:overflow-visible">
+            <div className="flex lg:block overflow-x-auto lg:overflow-visible pb-4 lg:pb-0 -mx-4 px-4 lg:mx-0 lg:px-0">
+              <div className="flex lg:block gap-2 lg:gap-0 min-w-max lg:min-w-0">
             <div className="bg-card/80 backdrop-blur-xl rounded-lg p-4 transition-all duration-300
               dark:shadow-[inset_0px_0.0625rem_0_rgba(255,255,255,0.1),_0_0.25rem_0.5rem_rgba(0,0,0,0.1)]
               shadow-[inset_0px_0.0625rem_0_rgba(255,255,255,0.4),_0_0.25rem_0.5rem_rgba(0,0,0,0.05)]
@@ -68,7 +70,7 @@ export default function CreateAgent() {
                 <motion.div
                   key={step.id}
                   className={cn(
-                    "relative p-4 mb-2 rounded-lg transition-all duration-300",
+                    "relative p-3 lg:p-4 mb-0 lg:mb-2 rounded-lg transition-all duration-300 shrink-0 lg:shrink",
                     currentStep === step.id
                       ? "bg-primary/5 dark:bg-primary/10 border border-primary/20 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.1),_0_4px_10px_rgba(0,0,0,0.05)] dark:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.1),_0_4px_10px_rgba(0,0,0,0.25)]"
                       : "hover:bg-gray-50 dark:hover:bg-gray-800/50 hover:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.1),_0_4px_10px_rgba(0,0,0,0.05)] dark:hover:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.1),_0_4px_10px_rgba(0,0,0,0.25)]"
@@ -111,11 +113,13 @@ export default function CreateAgent() {
                 </motion.div>
               ))}
             </div>
+              </div>
+            </div>
           </div>
 
           {/* Form Content */}
           <div className="flex-1">
-            <div className="bg-card/80 backdrop-blur-xl rounded-lg p-8 transition-all duration-300
+            <div className="bg-card/80 backdrop-blur-xl rounded-lg p-4 sm:p-6 lg:p-8 transition-all duration-300
               dark:shadow-[inset_0px_0.0625rem_0_rgba(255,255,255,0.1),_0_0.25rem_0.5rem_rgba(0,0,0,0.1)]
               shadow-[inset_0px_0.0625rem_0_rgba(255,255,255,0.4),_0_0.25rem_0.5rem_rgba(0,0,0,0.05)]
               hover:shadow-[inset_0px_0.0625rem_0_rgba(255,255,255,0.4),_0_0.5rem_1rem_rgba(0,0,0,0.1)]
@@ -130,7 +134,7 @@ export default function CreateAgent() {
                   transition={{ duration: 0.3 }}
                 >
                   {/* Step content will be rendered here */}
-                  <div className="min-h-[400px]">
+                  <div className="min-h-[300px] sm:min-h-[400px]">
                     <h2 className="text-2xl font-bold text-foreground mb-6 relative inline-block">
                       {steps[currentStep - 1].title}
                       <div className="absolute inset-0 bg-blue-500/20 blur-xl -z-10"></div>
@@ -144,7 +148,7 @@ export default function CreateAgent() {
                   </div>
 
                   {/* Navigation */}
-                  <div className="flex justify-between mt-8 pt-6 border-t">
+                  <div className="flex justify-between mt-6 sm:mt-8 pt-4 sm:pt-6 border-t">
                     <Button
                       variant="outline"
                       onClick={handleBack}

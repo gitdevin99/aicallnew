@@ -33,15 +33,18 @@ export const Layout = () => {
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5 }}
         >
-          <div className="container mx-auto px-4 py-8">
+          <div className="relative w-full">
             <motion.div
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 0.2, duration: 0.5 }}
+              className="flex min-h-screen"
             >
-              <div className="min-h-screen bg-light-bg dark:bg-navy">
-                <Sidebar />
-                <main className="pl-[260px] pt-4 pr-4">
+              <Sidebar />
+              <main className="flex-1 px-6 sm:px-8 lg:px-10 pt-8 transition-all duration-200 ease-in-out
+                             lg:pl-[calc(260px+3rem)] md:pl-[calc(240px+2rem)] sm:pl-[220px+1.5rem]
+                             overflow-x-hidden">
+                <div className="max-w-[1920px] mx-auto space-y-8 pb-10">
                   <Routes>
                     <Route path="/" element={<Index />} />
                     <Route path="automation" element={<Automation />} />
@@ -62,8 +65,8 @@ export const Layout = () => {
                     <Route path="agents/create" element={<CreateAgent />} />
                     <Route path="*" element={<NotFound />} />
                   </Routes>
-                </main>
-              </div>
+                </div>
+              </main>
             </motion.div>
           </div>
         </motion.div>

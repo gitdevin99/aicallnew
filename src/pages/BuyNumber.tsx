@@ -32,7 +32,7 @@ const BuyNumber = () => {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
-      className="space-y-4 w-full h-full"
+      className="space-y-8 p-6 bg-white/10 dark:bg-gray-900/20 rounded-lg border border-gray-200/20 dark:border-gray-700/30 backdrop-blur-sm w-full h-full"
     >
       <div className="space-y-1">
         <h1 className="text-3xl font-bold text-gray-900 dark:text-gray-100">Buy Phone Number</h1>

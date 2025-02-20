@@ -84,26 +84,30 @@ const Campaigns = () => {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
-      className="space-y-6"
+      className="space-y-8 p-6 bg-white/10 dark:bg-gray-900/20 rounded-lg border border-gray-200/20 dark:border-gray-700/30 backdrop-blur-sm"
     >
-      <div className="flex items-center justify-between">
-        <div className="flex items-center gap-4">
-          <h1 className="text-3xl font-bold text-gray-900 dark:text-gray-100">Campaigns</h1>
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 sm:gap-0">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-4">
+          <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-gray-100">Campaigns</h1>
           <div className="flex items-center text-sm text-gray-500 dark:text-gray-400">
             <span>Campaigns</span>
             <span className="mx-2">/</span>
             <span>List</span>
           </div>
         </div>
-        <Button className="gap-2" variant="default" onClick={() => navigate("/app/campaigns/create")}>
+        <Button 
+          className="w-full sm:w-auto gap-2 justify-center" 
+          variant="default" 
+          onClick={() => navigate("/app/campaigns/create")}
+        >
           <Plus className="h-4 w-4" />
           New Campaign
         </Button>
       </div>
       
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {statsData.map((stat) => (
-          <div key={stat.label} className="p-6 rounded-lg bg-gray-100 dark:bg-gray-900/50 space-y-2 cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-800/50 transition-colors">
+          <div key={stat.label} className="p-6 rounded-lg bg-white/80 dark:bg-gray-900/80 space-y-2 cursor-pointer hover:bg-gray-50/90 dark:hover:bg-gray-800/90 transition-colors shadow-sm border border-gray-200/20 dark:border-gray-700/30">
             <div className="flex items-center gap-2">
               {stat.icon}
               <span className="text-gray-500 dark:text-gray-400 text-sm">{stat.label}</span>
@@ -118,7 +122,7 @@ const Campaigns = () => {
           <Input
             type="search"
             placeholder="Search campaigns..."
-            className="bg-gray-50 dark:bg-gray-900/50"
+            className="bg-white/80 dark:bg-gray-900/80 border-gray-200/20 dark:border-gray-700/30"
           />
         </div>
         <Button variant="outline" size="icon">
@@ -126,14 +130,14 @@ const Campaigns = () => {
         </Button>
       </div>
 
-      <div className="relative rounded-lg border border-gray-200/50 dark:border-gray-800/50 bg-white/80 dark:bg-gray-900/80 transition-all duration-300">
+      <div className="relative rounded-lg border border-gray-200/20 dark:border-gray-700/30 bg-white/80 dark:bg-gray-900/80 shadow-sm transition-all duration-300">
         <div className="absolute inset-0 bg-gradient-to-br from-gray-50/80 to-white/80 dark:from-gray-800/80 dark:to-gray-900/80 opacity-20"></div>
         <div className="overflow-x-auto scrollbar-thin scrollbar-thumb-gray-300 hover:scrollbar-thumb-gray-400 dark:scrollbar-thumb-gray-600 dark:hover:scrollbar-thumb-gray-500">
           <div className="min-w-[1600px] w-full">
             <table className="w-full">
           <thead>
-            <tr className="relative border-b border-gray-200/50 dark:border-gray-800/50 bg-gray-50/95 dark:bg-gray-900/95">
-              <td className="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-transparent dark:from-blue-500/20 dark:to-transparent opacity-20"></td>
+            <tr className="relative border-b border-gray-200/20 dark:border-gray-700/30 bg-gray-50/80 dark:bg-gray-800/80">
+              <td className="absolute inset-0 bg-gradient-to-r from-blue-500/5 to-transparent dark:from-blue-400/10 dark:to-transparent opacity-20"></td>
               <th className="text-left py-3 px-6 text-gray-700 dark:text-gray-200 font-semibold relative z-10 w-[300px]">Name</th>
               <th className="text-left py-3 px-6 text-gray-700 dark:text-gray-200 font-semibold relative z-10 w-[150px]">Status</th>
               <th className="text-left py-3 px-6 text-gray-700 dark:text-gray-200 font-semibold relative z-10 w-[200px]">Progress</th>
