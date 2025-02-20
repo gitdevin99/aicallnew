@@ -132,18 +132,18 @@ export function TemplateBrowser({
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-4xl max-h-[80vh] bg-[#1a1f2e] border-gray-800">
+      <DialogContent className="max-w-4xl max-h-[80vh]">
         <DialogHeader>
-          <DialogTitle className="text-xl font-semibold text-white">Browse Templates</DialogTitle>
+          <DialogTitle className="text-xl font-semibold">Browse Templates</DialogTitle>
         </DialogHeader>
         
         {/* Search Bar */}
         <div className="relative mb-4">
-          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
+          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
           <input
             type="text"
             placeholder="Search templates..."
-            className="w-full pl-10 pr-4 py-2 bg-gray-900 border border-gray-700 rounded-lg text-gray-300 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-accent-blue"
+            className="w-full pl-10 pr-4 py-2 rounded-lg focus:outline-none"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
           />
@@ -151,7 +151,7 @@ export function TemplateBrowser({
 
         {/* Tag Cloud */}
         <div className="mb-4">
-          <h3 className="text-sm font-medium text-gray-400 mb-2">Filter by category:</h3>
+          <h3 className="text-sm font-medium text-muted-foreground mb-2">Filter by category:</h3>
           <div className="flex flex-wrap gap-2">
             {templateTags.map((tag) => (
               <button
@@ -160,7 +160,7 @@ export function TemplateBrowser({
                 className={`px-3 py-1 rounded-full text-sm font-medium transition-all duration-200 ${
                   selectedTags.includes(tag.name)
                     ? `${tag.color} text-white`
-                    : "bg-gray-800 text-gray-400 hover:bg-gray-700"
+                    : "bg-muted text-muted-foreground hover:bg-muted/80"
                 }`}
               >
                 {tag.name}
@@ -175,24 +175,24 @@ export function TemplateBrowser({
             {filteredTemplates.map((template) => (
               <div
                 key={template.id}
-                className="p-4 bg-gray-900 rounded-lg border border-gray-800 hover:border-accent-blue transition-all duration-200"
+                className="p-4 bg-card rounded-lg border hover:border-primary transition-all duration-200"
               >
-                <h3 className="text-lg font-medium text-white mb-2">{template.title}</h3>
-                <p className="text-sm text-gray-400 mb-3">{template.useCase}</p>
+                <h3 className="text-lg font-medium mb-2">{template.title}</h3>
+                <p className="text-sm text-muted-foreground mb-3">{template.useCase}</p>
                 <div className="flex flex-wrap gap-1 mb-3">
                   {template.tags.map((tag) => (
                     <span
                       key={tag}
-                      className="px-2 py-0.5 bg-gray-800 rounded-full text-xs text-gray-400"
+                      className="px-2 py-0.5 bg-muted rounded-full text-xs text-muted-foreground"
                     >
                       {tag}
                     </span>
                   ))}
                 </div>
-                <p className="text-sm text-gray-300 mb-4 line-clamp-3">{template.content}</p>
+                <p className="text-sm text-foreground mb-4 line-clamp-3">{template.content}</p>
                 <Button
                   variant="outline"
-                  className="w-full bg-transparent border-gray-700 text-accent-blue hover:bg-gray-800"
+                  className="w-full hover:bg-muted text-primary"
                   onClick={() => {
                     onSelectTemplate(template.content);
                     onOpenChange(false);

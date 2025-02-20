@@ -49,13 +49,13 @@ export function AdvancedFiltersDialog({
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="sm:max-w-[425px] bg-gray-900 border border-gray-800 text-gray-100">
+      <DialogContent className="sm:max-w-[425px] bg-background border-border">
         <DialogHeader>
-          <DialogTitle className="text-gray-100">Advanced Filters</DialogTitle>
+          <DialogTitle>Advanced Filters</DialogTitle>
         </DialogHeader>
         <div className="grid gap-4 py-4">
           <div className="grid gap-2">
-            <label htmlFor="phone" className="text-sm font-medium text-gray-400">
+            <label htmlFor="phone" className="text-sm font-medium text-muted-foreground">
               Phone Number
             </label>
             <Input
@@ -65,20 +65,19 @@ export function AdvancedFiltersDialog({
               onChange={(e) =>
                 setFilters({ ...filters, phoneNumber: e.target.value })
               }
-              className="col-span-3 bg-gray-800 border-gray-700 text-gray-100 placeholder:text-gray-500"
-            />
+              className="col-span-3" />
           </div>
           
           <div className="grid grid-cols-2 gap-6">
             <div className="grid gap-2">
-              <label className="text-sm font-medium text-gray-400">From Date</label>
+              <label className="text-sm font-medium text-muted-foreground">From Date</label>
               <Popover>
                 <PopoverTrigger asChild>
                   <Button
                     variant={"outline"}
                     className={cn(
-                      "justify-start text-left font-normal bg-gray-800 border-gray-700 text-gray-100 hover:bg-gray-700",
-                      !filters.fromDate && "text-gray-500"
+                      "justify-start text-left font-normal",
+                      !filters.fromDate && "text-muted-foreground"
                     )}
                   >
                     <CalendarIcon className="mr-2 h-4 w-4" />
@@ -89,7 +88,7 @@ export function AdvancedFiltersDialog({
                     )}
                   </Button>
                 </PopoverTrigger>
-                <PopoverContent className="w-auto p-0 bg-gray-900 border-gray-800">
+                <PopoverContent className="w-auto p-0 bg-popover border-border">
                   <Calendar
                     mode="single"
                     selected={filters.fromDate}
@@ -103,7 +102,7 @@ export function AdvancedFiltersDialog({
             </div>
             
             <div className="grid gap-2">
-              <label className="text-sm font-medium text-gray-400">To Date</label>
+              <label className="text-sm font-medium text-muted-foreground">To Date</label>
               <Popover>
                 <PopoverTrigger asChild>
                   <Button
@@ -121,7 +120,7 @@ export function AdvancedFiltersDialog({
                     )}
                   </Button>
                 </PopoverTrigger>
-                <PopoverContent className="w-auto p-0 bg-gray-900 border-gray-800">
+                <PopoverContent className="w-auto p-0 bg-popover border-border">
                   <Calendar
                     mode="single"
                     selected={filters.toDate}
@@ -137,7 +136,7 @@ export function AdvancedFiltersDialog({
 
           <div className="grid grid-cols-2 gap-4">
             <div className="grid gap-2">
-              <label htmlFor="minDuration" className="text-sm font-medium">
+              <label htmlFor="minDuration" className="text-sm font-medium text-muted-foreground">
                 Min Duration (s)
               </label>
               <Input
@@ -145,7 +144,7 @@ export function AdvancedFiltersDialog({
                 type="number"
                 placeholder="0"
                 value={filters.minDuration}
-                className="bg-gray-800 border-gray-700 text-gray-100 placeholder:text-gray-500"
+                className=""
                 onChange={(e) =>
                   setFilters({
                     ...filters,
@@ -156,7 +155,7 @@ export function AdvancedFiltersDialog({
             </div>
             
             <div className="grid gap-2">
-              <label htmlFor="maxDuration" className="text-sm font-medium">
+              <label htmlFor="maxDuration" className="text-sm font-medium text-muted-foreground">
                 Max Duration (s)
               </label>
               <Input
@@ -164,7 +163,7 @@ export function AdvancedFiltersDialog({
                 type="number"
                 placeholder="3600"
                 value={filters.maxDuration}
-                className="bg-gray-800 border-gray-700 text-gray-100 placeholder:text-gray-500"
+                className=""
                 onChange={(e) =>
                   setFilters({
                     ...filters,
@@ -175,11 +174,11 @@ export function AdvancedFiltersDialog({
             </div>
           </div>
         </div>
-        <div className="flex justify-end gap-3 pt-4 border-t border-gray-800">
-          <Button variant="outline" onClick={() => onOpenChange(false)} className="border-gray-700 hover:bg-gray-800 text-gray-100">
+        <div className="flex justify-end gap-3 pt-4 border-t border-border">
+          <Button variant="outline" onClick={() => onOpenChange(false)}>
             Cancel
           </Button>
-          <Button onClick={handleApplyFilters} className="bg-blue-500 hover:bg-blue-600 text-white">Apply Filters</Button>
+          <Button onClick={handleApplyFilters}>Apply Filters</Button>
         </div>
       </DialogContent>
     </Dialog>

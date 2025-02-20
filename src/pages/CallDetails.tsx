@@ -98,8 +98,8 @@ const CallDetails = () => {
       />
 
       {/* Call Details and Assistant Info */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        <Card className="h-full">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <Card>
           <CardHeader>
             <CardTitle>Call Details</CardTitle>
           </CardHeader>
@@ -170,13 +170,13 @@ const CallDetails = () => {
       </div>
 
       {/* Input and Extracted Variables */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        <Card className="h-full">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <Card>
           <CardHeader>
             <CardTitle>Input Variables</CardTitle>
           </CardHeader>
-          <CardContent className="pt-6">
-            <div className="space-y-6">
+          <CardContent>
+            <div className="space-y-4">
               {callData.inputVariables.map((variable) => (
                 <div key={variable.name}>
                   <div className="text-sm font-medium text-primary">
@@ -199,8 +199,8 @@ const CallDetails = () => {
               </Button>
             </div>
           </CardHeader>
-          <CardContent className="pt-6">
-            <div className="space-y-6">
+          <CardContent>
+            <div className="space-y-4">
               {callData.extractedVariables.map((variable) => (
                 <div key={variable.name}>
                   <div className="text-sm font-medium text-primary">

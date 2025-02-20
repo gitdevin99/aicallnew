@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Plus, Upload } from "lucide-react";
+import { Plus, Upload, Download } from "lucide-react";
+import { CsvUploadDialog } from "@/components/CsvUploadDialog";
 import { NewLeadDialog } from "@/components/NewLeadDialog";
 import { LeadTableRow } from "@/components/LeadTableRow";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -36,10 +37,16 @@ const leadsData = [
 
 const CRM = () => {
   const [newLeadDialogOpen, setNewLeadDialogOpen] = useState(false);
+  const [csvUploadDialogOpen, setCsvUploadDialogOpen] = useState(false);
 
   const handleNewLead = (leadData: any) => {
     console.log('New lead data:', leadData);
     // TODO: Implement lead creation logic
+  };
+
+  const handleCsvUpload = (file: File) => {
+    console.log('CSV file:', file);
+    // TODO: Implement CSV processing logic
   };
   return (
     <motion.div
@@ -65,10 +72,19 @@ const CRM = () => {
           onOpenChange={setNewLeadDialogOpen}
           onSave={handleNewLead}
         />
-        <Button variant="outline" className="gap-2 border-gray-200 dark:border-gray-800">
+        <Button 
+          variant="outline" 
+          className="gap-2 border-gray-200 dark:border-gray-800"
+          onClick={() => setCsvUploadDialogOpen(true)}
+        >
           <Upload className="h-4 w-4" />
           Upload CSV
         </Button>
+        <CsvUploadDialog
+          open={csvUploadDialogOpen}
+          onOpenChange={setCsvUploadDialogOpen}
+          onUpload={handleCsvUpload}
+        />
         <div className="flex-1">
           <Input
             type="search"

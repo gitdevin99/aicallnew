@@ -6,15 +6,19 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Switch } from "@/components/ui/switch";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { FileText, Upload, ArrowLeft } from "lucide-react";
+import { FileText, Upload, ArrowLeft, Plus } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { LeadsTable } from "@/components/campaign/LeadsTable";
 import { TemplateBrowser } from "@/components/campaign/TemplateBrowser";
+import { NewLeadDialog } from "@/components/NewLeadDialog";
+import { CsvUploadDialog } from "@/components/CsvUploadDialog";
 
 export default function CreateCampaign() {
   const navigate = useNavigate();
   const [timezone, setTimezone] = useState("UTC-4");
   const [templateBrowserOpen, setTemplateBrowserOpen] = useState(false);
+  const [newLeadDialogOpen, setNewLeadDialogOpen] = useState(false);
+  const [csvUploadDialogOpen, setCsvUploadDialogOpen] = useState(false);
   const [firstMessage, setFirstMessage] = useState("");
   const [activeDays, setActiveDays] = useState({
     Mon: true,
@@ -232,14 +236,44 @@ export default function CreateCampaign() {
           <div className="flex justify-between items-center">
             <h3 className="text-lg font-semibold">Leads Management</h3>
             <div className="flex gap-2">
-              <Button variant="outline" size="sm" className="gap-2">
+              <Button 
+                variant="outline" 
+                size="sm" 
+                className="gap-2"
+                onClick={() => setCsvUploadDialogOpen(true)}
+              >
                 <Upload className="h-4 w-4" />
                 Upload CSV
               </Button>
-              <Button size="sm">+ New Lead</Button>
+              <Button 
+                size="sm"
+                className="gap-2"
+                onClick={() => setNewLeadDialogOpen(true)}
+              >
+                <Plus className="h-4 w-4" />
+                New Lead
+              </Button>
             </div>
           </div>
           <LeadsTable />
+          
+          {/* Dialogs */}
+          <NewLeadDialog
+            open={newLeadDialogOpen}
+            onOpenChange={setNewLeadDialogOpen}
+            onSave={(leadData) => {
+              console.log('New lead data:', leadData);
+              // TODO: Implement lead creation logic
+            }}
+          />
+          <CsvUploadDialog
+            open={csvUploadDialogOpen}
+            onOpenChange={setCsvUploadDialogOpen}
+            onUpload={(file) => {
+              console.log('CSV file:', file);
+              // TODO: Implement CSV processing logic
+            }}
+          />
         </div>
       </div>
     </motion.div>

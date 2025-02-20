@@ -46,14 +46,14 @@ export function TemplateBrowser({
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-4">
-      <div className="bg-gray-900 rounded-xl shadow-xl w-[700px] max-h-[80vh] overflow-hidden flex flex-col">
-        <div className="p-6 border-b border-gray-800 flex justify-between items-center">
-          <h2 className="text-xl font-semibold text-white">{title}</h2>
+    <div className="fixed inset-0 bg-background/80 backdrop-blur-sm flex items-center justify-center z-50 p-4">
+      <div className="bg-background rounded-xl border shadow-lg w-[700px] max-h-[80vh] overflow-hidden flex flex-col">
+        <div className="p-6 border-b flex justify-between items-center">
+          <h2 className="text-xl font-semibold">{title}</h2>
           <Button
             variant="ghost"
             size="icon"
-            className="text-gray-400 hover:text-white hover:bg-gray-800 rounded-full"
+            className="text-muted-foreground hover:text-foreground rounded-full"
             onClick={onClose}
           >
             <X className="h-5 w-5" />
@@ -67,7 +67,7 @@ export function TemplateBrowser({
                 placeholder="Search templates..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full bg-gray-800/50 border-gray-700/50 text-gray-100 py-2.5 px-4 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                className="w-full py-2.5 px-4 transition-all"
               />
             </div>
 
@@ -76,8 +76,8 @@ export function TemplateBrowser({
                 <button
                   key={tag}
                   className={`px-3 py-1.5 rounded-full text-sm font-medium transition-all ${selectedTags.includes(tag)
-                    ? 'bg-blue-600/90 text-white shadow-sm shadow-blue-500/20'
-                    : 'bg-gray-800/50 text-gray-300 hover:bg-gray-700/70 hover:text-white'
+                    ? 'bg-primary text-primary-foreground shadow-sm'
+                    : 'bg-muted text-muted-foreground hover:bg-muted/80 hover:text-foreground'
                     }`}
                   onClick={() => {
                     if (selectedTags.includes(tag)) {
@@ -94,21 +94,21 @@ export function TemplateBrowser({
           </div>
         </div>
 
-        <div className="flex-1 overflow-y-auto p-6 pt-4 space-y-4 border-t border-gray-800/50">
+        <div className="flex-1 overflow-y-auto p-6 pt-4 space-y-4 border-t">
           {filteredTemplates.map(template => (
             <div
               key={template.id}
-              className="bg-gray-800/30 rounded-lg p-5 hover:bg-gray-800/50 transition-all border border-gray-700/30 hover:border-gray-700/50 group relative"
+              className="bg-muted/50 rounded-lg p-5 hover:bg-muted transition-all border border-border/50 hover:border-border group relative"
             >
               <div className="flex flex-col gap-4">
                 <div className="flex items-start justify-between gap-4">
                   <div>
-                    <h3 className="text-white font-medium">{template.title}</h3>
+                    <h3 className="font-medium">{template.title}</h3>
                     <div className="flex flex-wrap gap-1 mt-1.5">
                       {template.tags.map(tag => (
                         <span
                           key={tag}
-                          className="text-xs px-2 py-0.5 rounded-full bg-blue-500/10 text-blue-400/90"
+                          className="text-xs px-2 py-0.5 rounded-full bg-primary/10 text-primary/90"
                         >
                           {tag}
                         </span>
@@ -118,7 +118,7 @@ export function TemplateBrowser({
                   <Button
                     variant="default"
                     size="sm"
-                    className="bg-blue-600/90 hover:bg-blue-600 text-white shrink-0 shadow-sm shadow-blue-500/20 transition-all"
+                    className="shrink-0 transition-all"
                     onClick={() => {
                       onSelect(template.content);
                       setSearchQuery('');
@@ -128,7 +128,7 @@ export function TemplateBrowser({
                     Use Template
                   </Button>
                 </div>
-                <p className="text-gray-400 text-sm">{template.content}</p>
+                <p className="text-muted-foreground text-sm">{template.content}</p>
               </div>
 
             </div>

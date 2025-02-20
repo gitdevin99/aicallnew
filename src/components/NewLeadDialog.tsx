@@ -65,13 +65,13 @@ export function NewLeadDialog({
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="sm:max-w-[425px] bg-gray-900 border border-gray-800 text-gray-100">
+      <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
-          <DialogTitle className="text-gray-100">New Lead</DialogTitle>
+          <DialogTitle>New Lead</DialogTitle>
         </DialogHeader>
         <div className="grid gap-4 py-4">
           <div className="grid gap-2">
-            <label htmlFor="phone" className="text-sm font-medium text-gray-400">
+            <label htmlFor="phone" className="text-sm font-medium text-muted-foreground">
               Phone number
             </label>
             <Input
@@ -81,12 +81,12 @@ export function NewLeadDialog({
               onChange={(e) =>
                 setLeadData({ ...leadData, phoneNumber: e.target.value })
               }
-              className="bg-gray-800 border-gray-700 text-gray-100 placeholder:text-gray-500"
+              className=""
             />
           </div>
 
           <div className="grid gap-2">
-            <label htmlFor="name" className="text-sm font-medium text-gray-400">
+            <label htmlFor="name" className="text-sm font-medium text-muted-foreground">
               Name
             </label>
             <Input
@@ -94,12 +94,12 @@ export function NewLeadDialog({
               placeholder="Ex: John Doe"
               value={leadData.name}
               onChange={(e) => setLeadData({ ...leadData, name: e.target.value })}
-              className="bg-gray-800 border-gray-700 text-gray-100 placeholder:text-gray-500"
+              className=""
             />
           </div>
 
           <div className="grid gap-2">
-            <label htmlFor="email" className="text-sm font-medium text-gray-400">
+            <label htmlFor="email" className="text-sm font-medium text-muted-foreground">
               Email
             </label>
             <Input
@@ -108,17 +108,17 @@ export function NewLeadDialog({
               placeholder="Ex: john@doe.com"
               value={leadData.email}
               onChange={(e) => setLeadData({ ...leadData, email: e.target.value })}
-              className="bg-gray-800 border-gray-700 text-gray-100 placeholder:text-gray-500"
+              className=""
             />
           </div>
 
           <div className="grid gap-2">
             <div className="flex justify-between items-center">
-              <label className="text-sm font-medium text-gray-400">Variables</label>
+              <label className="text-sm font-medium text-muted-foreground">Variables</label>
               <Button
                 type="button"
                 variant="link"
-                className="text-blue-500 hover:text-blue-400 p-0 h-auto"
+                className="text-primary hover:text-primary/90 p-0 h-auto"
                 onClick={addVariable}
               >
                 Add Row
@@ -130,20 +130,20 @@ export function NewLeadDialog({
                   placeholder="Variable name"
                   value={variable.key}
                   onChange={(e) => updateVariable(index, "key", e.target.value)}
-                  className="bg-gray-800 border-gray-700 text-gray-100 placeholder:text-gray-500"
+                  className=""
                 />
                 <Input
                   placeholder="Default value will be used"
                   value={variable.value}
                   onChange={(e) => updateVariable(index, "value", e.target.value)}
-                  className="bg-gray-800 border-gray-700 text-gray-100 placeholder:text-gray-500"
+                  className=""
                 />
                 <Button
                   type="button"
                   variant="ghost"
                   size="icon"
                   onClick={() => removeVariable(index)}
-                  className="h-10 w-10 text-gray-400 hover:text-red-400"
+                  className="h-10 w-10 text-muted-foreground hover:text-destructive"
                 >
                   <Trash2 className="h-4 w-4" />
                 </Button>
@@ -151,17 +151,17 @@ export function NewLeadDialog({
             ))}
           </div>
         </div>
-        <div className="flex justify-end gap-3 pt-4 border-t border-gray-800">
+        <div className="flex justify-end gap-3 pt-4 border-t border-border">
           <Button
             variant="outline"
             onClick={() => onOpenChange(false)}
-            className="border-gray-700 hover:bg-gray-800 text-gray-100"
+            className=""
           >
             Cancel
           </Button>
           <Button
             onClick={handleSave}
-            className="bg-blue-500 hover:bg-blue-600 text-white"
+            className=""
           >
             Save
           </Button>

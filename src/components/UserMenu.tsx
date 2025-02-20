@@ -19,16 +19,16 @@ export function UserMenu() {
         <Button
           variant="ghost"
           size="icon"
-          className="h-9 w-9 rounded-md hover:bg-gray-800"
+          className="h-9 w-9 rounded-md hover:bg-muted"
         >
-          <Settings className="h-5 w-5 text-gray-400" />
+          <Settings className="h-5 w-5 text-muted-foreground" />
         </Button>
       </PopoverTrigger>
-      <PopoverContent className="w-40 p-0 bg-gray-900 border border-gray-800">
+      <PopoverContent className="w-40 p-0">
         <div className="py-2">
           <Button
             variant="ghost"
-            className="w-full justify-start px-3 py-2 text-sm font-normal text-gray-300 hover:bg-gray-800 hover:text-white"
+            className="w-full justify-start px-3 py-2 text-sm font-normal hover:bg-muted"
             onClick={() => window.location.href = "/app/billing"}
           >
             <CreditCard className="mr-2 h-4 w-4" />
@@ -36,7 +36,7 @@ export function UserMenu() {
           </Button>
           <Button
             variant="ghost"
-            className="w-full justify-start px-3 py-2 text-sm font-normal text-gray-300 hover:bg-gray-800 hover:text-white"
+            className="w-full justify-start px-3 py-2 text-sm font-normal hover:bg-muted"
             onClick={handleLogout}
           >
             <LogOut className="mr-2 h-4 w-4" />
