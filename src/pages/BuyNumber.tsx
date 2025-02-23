@@ -41,13 +41,13 @@ const BuyNumber = () => {
         </p>
       </div>
 
-      <div className="grid grid-cols-12 gap-2">
-        <div className="col-span-2">
+      <div className="grid grid-cols-1 sm:grid-cols-12 gap-4 sm:gap-2">
+        <div className="sm:col-span-2">
           <label className="block text-sm font-medium text-gray-500 dark:text-gray-400 mb-2">
             Country
           </label>
           <Select defaultValue="us">
-            <SelectTrigger className="bg-white/50 dark:bg-transparent border-gray-200/50 dark:border-gray-800/50 shadow-lg hover:shadow-gray-500/10 transition-all duration-200 text-gray-900 dark:text-white">
+            <SelectTrigger className="w-full bg-white/50 dark:bg-transparent border-gray-200/50 dark:border-gray-800/50 shadow-lg hover:shadow-gray-500/10 transition-all duration-200 text-gray-900 dark:text-white">
               <SelectValue placeholder="Select country" className="text-gray-900 dark:text-white">
                 <div className="flex items-center gap-2">
                   <US className="h-4 w-3" />
@@ -78,7 +78,7 @@ const BuyNumber = () => {
           </Select>
         </div>
 
-        <div className="col-span-6">
+        <div className="sm:col-span-6">
           <label className="block text-sm font-medium text-gray-500 dark:text-gray-400 mb-2">
             Search
           </label>
@@ -86,24 +86,24 @@ const BuyNumber = () => {
             <Search className="absolute left-3 top-2.5 h-4 w-4 text-gray-500 dark:text-gray-400" />
             <Input
               placeholder="Search by digits or phrases"
-              className="pl-9 bg-white/50 dark:bg-transparent border-gray-200/50 dark:border-gray-800/50 text-gray-900 dark:text-white placeholder:text-gray-500 dark:placeholder:text-gray-400 shadow-lg hover:shadow-gray-500/10 transition-all duration-200"
+              className="w-full pl-9 bg-white/50 dark:bg-transparent border-gray-200/50 dark:border-gray-800/50 text-gray-900 dark:text-white placeholder:text-gray-500 dark:placeholder:text-gray-400 shadow-lg hover:shadow-gray-500/10 transition-all duration-200"
             />
           </div>
         </div>
 
-        <div className="col-span-2">
+        <div className="sm:col-span-2">
           <label className="block text-sm font-medium text-gray-500 dark:text-gray-400 mb-2">
             Capabilities
           </label>
           <div className="flex items-center gap-2 h-10">
             <Switch id="voice-enabled" />
             <label htmlFor="voice-enabled" className="text-sm text-gray-500 dark:text-gray-400">
-              Voice Enabled
+              Voice Enablednabled
             </label>
           </div>
         </div>
 
-        <div className="col-span-2">
+        <div className="sm:col-span-2">
           <label className="block text-sm font-medium text-gray-500 dark:text-gray-400 mb-2">
             Number Type
           </label>
@@ -126,9 +126,10 @@ const BuyNumber = () => {
         </div>
       </div>
 
-      <div className="relative border border-gray-200/50 dark:border-gray-800/50 overflow-hidden bg-white/50 dark:bg-gray-900/50 backdrop-blur-sm shadow-[inset_0px_0px_20px_rgba(0,0,0,0.02)] dark:shadow-[inset_0px_0px_20px_rgba(255,255,255,0.02)] group transition-all duration-200">
+      <div className="relative border border-gray-200/50 dark:border-gray-800/50 bg-white/50 dark:bg-gray-900/50 backdrop-blur-sm shadow-[inset_0px_0px_20px_rgba(0,0,0,0.02)] dark:shadow-[inset_0px_0px_20px_rgba(255,255,255,0.02)] group transition-all duration-200 rounded-lg">
         <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 via-transparent to-purple-500/5 dark:from-blue-500/10 dark:via-transparent dark:to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-        <table className="w-full">
+        <div className="overflow-x-auto">
+          <table className="w-full whitespace-nowrap" style={{ minWidth: '800px' }}>
           <thead>
             <tr className="relative border-b border-gray-200/50 dark:border-gray-800/50 bg-gray-50/80 dark:bg-gray-900/80 backdrop-blur-sm">
               <td className="absolute inset-0 bg-gradient-to-r from-blue-500/5 to-transparent dark:from-blue-500/10 dark:to-transparent opacity-50"></td>
@@ -149,6 +150,7 @@ const BuyNumber = () => {
             ))}
           </tbody>
         </table>
+        </div>
       </div>
 
       <div className="flex items-center justify-between text-sm text-gray-500 dark:text-gray-400">

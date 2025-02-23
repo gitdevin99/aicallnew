@@ -3,6 +3,9 @@ import { Button } from "@/components/ui/button";
 import { Select } from "@/components/ui/select";
 import { Search, Plus, Filter } from "lucide-react";
 import { GB, US } from 'country-flag-icons/react/3x2';
+import { PhoneNumberDialog } from "@/components/phone-number-dialog";
+import { SipTrunkDialog } from "@/components/sip-trunk-dialog";
+import { LinkNumberDialog } from "@/components/link-number-dialog";
 
 interface PhoneNumber {
   country: 'US' | 'GB';
@@ -63,21 +66,25 @@ export default function ManageNumbers() {
   return (
     <div className="p-6 space-y-6">
       {/* Header */}
-      <div className="flex justify-between items-start">
-        <div>
+      <div className="flex flex-col gap-6 sm:flex-row sm:justify-between sm:items-start">
+        <div className="w-full sm:w-auto">
           <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-6">Manage Numbers</h1>
-          <div className="relative w-[300px]">
+          <div className="relative w-full sm:w-[300px]">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 dark:text-gray-400 h-4 w-4" />
             <Input
               placeholder="Search numbers, campaigns..."
-              className="pl-10 bg-transparent border-gray-700"
+              className="pl-10 bg-transparent border-gray-700 w-full"
             />
           </div>
         </div>
-        <Button className="bg-blue-600 hover:bg-blue-700 text-white">
-          <Plus className="h-4 w-4 mr-2" />
-          Add New Number
-        </Button>
+        <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
+          <LinkNumberDialog />
+          <SipTrunkDialog />
+          <Button className="bg-blue-600 hover:bg-blue-700 text-white w-full sm:w-auto justify-center">
+            <Plus className="h-4 w-4 mr-2" />
+            Add New Number
+          </Button>
+        </div>
       </div>
 
       {/* Table */}
