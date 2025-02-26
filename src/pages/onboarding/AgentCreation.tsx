@@ -534,7 +534,7 @@ export default function AgentCreation() {
                       <Bot className="w-5 h-5 text-white" />
                     </div>
                     <div className="flex-1">
-                      <div className="bg-gray-800 rounded-lg p-4 text-gray-100 inline-block">
+                      <div className="bg-gray-100 dark:bg-gray-800 rounded-lg p-4 text-gray-900 dark:text-gray-100 inline-block">
                         {message.content}
                       </div>
                     </div>
@@ -545,12 +545,12 @@ export default function AgentCreation() {
                 {visibleMessages.includes(-message.id) && message.type === 'input' && (
                   <div className="flex items-start gap-3 justify-end">
                     <div className="flex-1 max-w-[80%] text-right">
-                      <div className="group relative bg-blue-500 rounded-lg p-4 text-white inline-block">
+                      <div className="group relative bg-blue-500 dark:bg-blue-900 rounded-lg p-4 text-white inline-block">
                         <div className="absolute -left-12 top-2 opacity-0 group-hover:opacity-100 transition-opacity">
                           <Button
                             variant="ghost"
                             size="sm"
-                            className="text-gray-400 hover:text-gray-300"
+                            className="text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300"
                             onClick={() => {
                               // Set the message as being edited
                               setEditingMessage(message.id);
@@ -567,7 +567,7 @@ export default function AgentCreation() {
                         </div>
                         {message.id === 3 && agentData.name}
                         {message.id === 5 && (
-                          <div className="flex items-center justify-center w-10 h-10 bg-gray-700/50 rounded-lg p-1">
+                          <div className="flex items-center justify-center w-10 h-10 bg-gray-200 dark:bg-gray-700/50 rounded-lg p-1">
                             <Flag code={languages.find(l => l.id === agentData.language)?.flag} className="w-full h-full object-cover rounded" />
                           </div>
                         )}
@@ -579,7 +579,7 @@ export default function AgentCreation() {
                             {agentData.knowledgeBase.files.length > 0 && (
                               <div>
                                 <div className="font-medium mb-1">Files:</div>
-                                <div className="text-sm opacity-90 bg-gray-700/50 rounded-md p-2">
+                                <div className="text-sm bg-blue-100 dark:bg-gray-700/50 rounded-md p-2 text-gray-800 dark:text-gray-100">
                                   {agentData.knowledgeBase.files.map(file => file.name).join(", ")}
                                 </div>
                               </div>
@@ -587,7 +587,7 @@ export default function AgentCreation() {
                             {agentData.knowledgeBase.texts.map((text, index) => (
                               <div key={index}>
                                 <div className="font-medium mb-1">Text:</div>
-                                <div className="text-sm opacity-90 bg-gray-700/50 rounded-md p-2 whitespace-pre-wrap">
+                                <div className="text-sm bg-blue-100 dark:bg-gray-700/50 rounded-md p-2 whitespace-pre-wrap text-gray-800 dark:text-gray-100">
                                   {text}
                                 </div>
                               </div>
@@ -595,7 +595,7 @@ export default function AgentCreation() {
                             {agentData.knowledgeBase.urls.length > 0 && (
                               <div>
                                 <div className="font-medium mb-1">URLs:</div>
-                                <div className="text-sm opacity-90 bg-gray-700/50 rounded-md p-2">
+                                <div className="text-sm bg-blue-100 dark:bg-gray-700/50 rounded-md p-2 text-gray-800 dark:text-gray-100">
                                   {agentData.knowledgeBase.urls.map((url, index) => (
                                     <div key={index}>{url}</div>
                                   ))}
@@ -605,7 +605,7 @@ export default function AgentCreation() {
                             {agentData.knowledgeBase.files.length === 0 && 
                              agentData.knowledgeBase.texts.length === 0 && 
                              agentData.knowledgeBase.urls.length === 0 && (
-                              <div className="text-sm opacity-70">No knowledge base content added</div>
+                              <div className="text-sm text-gray-600 dark:text-gray-300 italic">No knowledge base content added</div>
                             )}
                           </div>
                         )}
@@ -624,7 +624,7 @@ export default function AgentCreation() {
                       <div className="flex gap-3 justify-end">
                         <Input
                           placeholder="Enter agent name..."
-                          className="flex-1 bg-gray-800 border-gray-700 text-gray-100"
+                          className="flex-1 bg-gray-100 dark:bg-gray-800 border-gray-300 dark:border-gray-700 text-gray-900 dark:text-gray-100"
                           defaultValue={editingMessage === message.id ? agentData.name : ''}
                           onKeyDown={(e) => e.key === 'Enter' && handleTextInput(e.currentTarget.value)}
                           autoFocus
@@ -643,7 +643,7 @@ export default function AgentCreation() {
                         {message.id === 5 ? (
                           <div className="max-w-md mx-auto">
                             <Select onValueChange={handleVoiceSelection} value={agentData.language}>
-                              <SelectTrigger className="w-full bg-gray-800 border-gray-700 text-gray-100 h-12">
+                              <SelectTrigger className="w-full bg-white dark:bg-gray-800 border-gray-300 dark:border-gray-700 text-gray-900 dark:text-gray-100 h-12">
                                 <SelectValue placeholder="Select a language">
                                   {agentData.language && (
                                     <div className="flex items-center gap-2">
@@ -653,12 +653,12 @@ export default function AgentCreation() {
                                   )}
                                 </SelectValue>
                               </SelectTrigger>
-                              <SelectContent className="bg-gray-800 border-gray-700 max-h-[300px]">
+                              <SelectContent className="bg-white dark:bg-gray-800 border-gray-300 dark:border-gray-700 max-h-[300px]">
                                 {languages.map((lang) => (
                                   <SelectItem 
                                     key={lang.id} 
                                     value={lang.id}
-                                    className="text-gray-100 focus:bg-gray-700 focus:text-gray-100"
+                                    className="text-gray-900 dark:text-gray-100 focus:bg-gray-100 dark:focus:bg-gray-700 focus:text-gray-900 dark:focus:text-gray-100"
                                   >
                                     <div className="flex items-center gap-2">
                                       <Flag code={lang.flag} className="w-5 h-5" />
@@ -672,22 +672,22 @@ export default function AgentCreation() {
                         ) : message.id === 7 ? (
                           <div className="max-w-md mx-auto">
                             <Select onValueChange={handleVoiceSelection} value={agentData.voice}>
-                              <SelectTrigger className="w-full bg-gray-800 border-gray-700 text-gray-100 h-12">
+                              <SelectTrigger className="w-full bg-white dark:bg-gray-800 border-gray-300 dark:border-gray-700 text-gray-900 dark:text-gray-100 h-12">
                                 <SelectValue placeholder="Select voice" />
                               </SelectTrigger>
-                              <SelectContent className="bg-gray-800 border-gray-700 max-h-[300px]">
+                              <SelectContent className="bg-white dark:bg-gray-800 border-gray-300 dark:border-gray-700 max-h-[300px]">
                                 {voices.map((voice) => (
                                   <SelectItem 
                                     key={voice.id} 
                                     value={voice.id}
-                                    className="text-gray-100 focus:bg-gray-700 focus:text-gray-100"
+                                    className="text-gray-900 dark:text-gray-100 focus:bg-gray-100 dark:focus:bg-gray-700 focus:text-gray-900 dark:focus:text-gray-100"
                                   >
                                     <div className="flex items-center justify-between w-full gap-4">
                                       <span className="font-medium">{voice.name}</span>
                                       <Button
                                         variant="ghost"
                                         size="sm"
-                                        className="text-gray-400 hover:text-gray-300 shrink-0"
+                                        className="text-gray-400 dark:text-gray-300 hover:text-gray-300 dark:hover:text-gray-300"
                                         onClick={(e) => {
                                           e.preventDefault();
                                           // Add preview functionality
@@ -702,7 +702,7 @@ export default function AgentCreation() {
                             </Select>
                             <Button
                               variant="outline"
-                              className="w-full mt-3 border-gray-700 hover:bg-gray-700 text-gray-100 h-12"
+                              className="w-full mt-3 border-gray-300 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-900 dark:text-white h-12"
                               onClick={() => setShowVoiceModal(true)}
                             >
                               Clone Your Voice
@@ -716,20 +716,20 @@ export default function AgentCreation() {
                             {message.options.map((option) => (
                               <div
                                 key={option.id}
-                                className="flex items-center space-x-4 bg-gray-800 rounded-lg p-4 cursor-pointer"
+                                className="flex items-center space-x-4 bg-gray-100 dark:bg-gray-800 rounded-lg p-4 cursor-pointer"
                                 onClick={() => handleVoiceSelection(option.id)}
                               >
                                 <RadioGroupItem value={option.id} id={option.id} />
                                 <div className="flex-1">
-                                  <Label htmlFor={option.id} className="text-gray-100 font-medium">
+                                  <Label htmlFor={option.id} className="text-gray-900 dark:text-gray-100 font-medium">
                                     {option.name}
                                   </Label>
-                                  <p className="text-sm text-gray-400">{option.description}</p>
+                                  <p className="text-sm text-gray-400 dark:text-gray-300">{option.description}</p>
                                 </div>
                                 <Button
                                   variant="outline"
                                   size="sm"
-                                  className="border-gray-700 hover:bg-gray-700"
+                                  className="border-gray-300 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-700"
                                   onClick={(e) => {
                                     e.stopPropagation();
                                     // Add preview functionality here
@@ -746,44 +746,29 @@ export default function AgentCreation() {
 
                     {message.inputType === 'voice' && (
                       <div className="space-y-6">
-                        <div className="bg-gray-800 rounded-lg p-6 space-y-4">
-                          <div className="flex items-center justify-between">
-                            <h3 className="text-lg font-medium text-gray-100">Record Voice</h3>
-                            {recordingDuration > 0 && !isRecording && (
-                              <span className="text-sm text-gray-400">
-                                Duration: {formatDuration(recordingDuration)}
-                              </span>
+                        <div className="bg-white dark:bg-gray-800/50 rounded-lg p-6 border border-gray-200 dark:border-transparent">
+                          <div className="flex items-center justify-center h-24">
+                            {isRecordingStarted ? (
+                              <div className="text-center space-y-2">
+                                <div className="text-red-500 text-lg font-medium animate-pulse">Recording...</div>
+                                <div className="text-gray-500 dark:text-gray-300">{`${Math.floor(recordingTime / 60)}:${(recordingTime % 60).toString().padStart(2, '0')} / 0:30`}</div>
+                              </div>
+                            ) : (
+                              <div className="text-center space-y-2">
+                                <div className="text-gray-500 dark:text-gray-300">Click Start to begin recording</div>
+                              </div>
                             )}
                           </div>
-                          <div className="flex justify-center">
-                            <Button
-                              onClick={isRecording ? stopRecording : startRecording}
-                              className={`rounded-full w-16 h-16 ${
-                                isRecording ? 'bg-red-500 hover:bg-red-600' : 'bg-blue-500 hover:bg-blue-600'
-                              }`}
-                            >
-                              {isRecording ? (
-                                <Square className="w-6 h-6 text-white" />
-                              ) : (
-                                <Mic className="w-6 h-6 text-white" />
-                              )}
-                            </Button>
-                          </div>
-                          {isRecording && (
-                            <div className="flex justify-center">
-                              <div className="animate-pulse text-red-500">Recording...</div>
-                            </div>
-                          )}
                         </div>
 
                         <div className="text-center">
-                          <span className="text-gray-400">or</span>
+                          <span className="text-gray-400 dark:text-gray-300">or</span>
                         </div>
 
-                        <div className="bg-gray-800 rounded-lg p-6 space-y-4">
-                          <h3 className="text-lg font-medium text-gray-100">Upload Audio</h3>
+                        <div className="bg-gray-100 dark:bg-gray-800 rounded-lg p-6 space-y-4">
+                          <h3 className="text-lg font-medium text-gray-900 dark:text-gray-100">Upload Audio</h3>
                           {!audioFile ? (
-                            <div className="flex items-center justify-center h-32 border-2 border-dashed border-gray-700 rounded-lg">
+                            <div className="flex items-center justify-center h-32 border-2 border-dashed border-gray-300 dark:border-gray-700 rounded-lg">
                               <div className="text-center">
                                 <input
                                   type="file"
@@ -800,27 +785,24 @@ export default function AgentCreation() {
                                   <Upload className="w-5 h-5" />
                                   <span>Upload Audio File</span>
                                 </Button>
-                                <p className="text-sm text-gray-400 mt-2">
+                                <p className="text-sm text-gray-600 dark:text-gray-300 mt-2">
                                   Supports MP3, WAV, M4A
                                 </p>
                               </div>
                             </div>
                           ) : (
-                            <div className="flex items-center justify-between bg-gray-700 rounded-lg p-3">
-                              <div className="flex items-center space-x-3">
-                                <Play className="w-5 h-5 text-gray-300" />
-                                <span className="text-gray-100">{audioFile.name}</span>
-                              </div>
+                            <div className="flex items-center justify-between bg-gray-200 dark:bg-gray-700/50 rounded-lg p-3">
+                              <div className="flex-1 text-sm text-gray-700 dark:text-gray-100 truncate">{audioFile.name}</div>
                               <Button
                                 variant="ghost"
                                 size="sm"
+                                className="text-gray-400 dark:text-gray-300 hover:text-gray-300 dark:hover:text-gray-300 hover:bg-gray-600 opacity-0 group-hover:opacity-100 transition-opacity"
                                 onClick={() => {
                                   setAudioFile(null);
                                   if (fileInputRef.current) {
                                     fileInputRef.current.value = '';
                                   }
                                 }}
-                                className="text-gray-400 hover:text-gray-300"
                               >
                                 <X className="w-4 h-4" />
                               </Button>
@@ -857,14 +839,14 @@ export default function AgentCreation() {
                                   setAgentData(prev => ({ ...prev, prompt: value }));
                                 }
                               }}
-                              className="min-h-[100px] bg-gray-800 border-gray-700 text-gray-100 w-full"
+                              className="min-h-[100px] bg-gray-100 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 text-gray-900 dark:text-gray-100 w-full"
                               autoFocus
                               rows={6}
                             />
                             <div className="flex justify-end gap-2">
                               <Button
                                 variant="outline"
-                                className="border-gray-700 hover:bg-gray-700 text-white"
+                                className="border-gray-300 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-900 dark:text-white"
                                 onClick={() => {
                                   if (message.id === 9) {
                                     setAgentData(prev => ({ ...prev, greeting: '' }));
@@ -893,7 +875,7 @@ export default function AgentCreation() {
                           {message.showTemplates && (
                             <Button
                               variant="outline"
-                              className="border-gray-700 hover:bg-gray-700 text-white h-auto"
+                              className="border-gray-300 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-900 dark:text-white h-auto"
                               onClick={() => {
                                 if (message.id === 9) {
                                   setShowGreetingTemplates(true);
@@ -911,11 +893,11 @@ export default function AgentCreation() {
                     )}
 
                     {message.inputType === 'knowledge' && (
-                      <div className="space-y-6">
+                      <div className="space-y-6 mt-8 mb-12">
                         {/* File Upload */}
-                        <div className="bg-gray-800 rounded-lg p-6 space-y-4">
-                          <h3 className="text-lg font-medium text-gray-100">Upload Files</h3>
-                          <div className="flex items-center justify-center h-32 border-2 border-dashed border-gray-700 rounded-lg">
+                        <div className="bg-blue-100 dark:bg-gray-700/50 rounded-lg p-6 space-y-4 border border-blue-200 dark:border-blue-800/50">
+                          <h3 className="text-lg font-medium text-gray-900 dark:text-gray-100">Upload Files</h3>
+                          <div className="flex items-center justify-center h-32 border-2 border-dashed border-gray-300 dark:border-gray-700 rounded-lg">
                             <div className="text-center">
                               <input
                                 type="file"
@@ -939,7 +921,7 @@ export default function AgentCreation() {
                                   <span>Upload Files</span>
                                 </Button>
                               </label>
-                              <p className="text-sm text-gray-400 mt-2">
+                              <p className="text-sm text-gray-600 dark:text-gray-300 mt-2">
                                 PDF, DOC, TXT files accepted
                               </p>
                             </div>
@@ -947,8 +929,8 @@ export default function AgentCreation() {
                           {agentData.knowledgeBase.files.length > 0 && (
                             <div className="space-y-2">
                               {agentData.knowledgeBase.files.map((file, index) => (
-                                <div key={index} className="flex items-center justify-between bg-gray-700 rounded-lg p-3">
-                                  <span className="text-gray-100">{file.name}</span>
+                                <div key={index} className="flex items-center justify-between bg-gray-200 dark:bg-gray-700/50 rounded-lg p-3">
+                                  <span className="text-gray-700 dark:text-gray-100">{file.name}</span>
                                   <Button
                                     variant="ghost"
                                     size="sm"
@@ -971,11 +953,11 @@ export default function AgentCreation() {
                         </div>
 
                         {/* Text Input */}
-                        <div className="bg-gray-800 rounded-lg p-6 space-y-4">
-                          <h3 className="text-lg font-medium text-gray-100">Add Text</h3>
+                        <div className="bg-gray-100 dark:bg-gray-800 rounded-lg p-6 space-y-4 border border-gray-300 dark:border-gray-700">
+                          <h3 className="text-lg font-medium text-gray-900 dark:text-gray-100">Add Text</h3>
                           <Textarea
                             placeholder="Enter any additional text knowledge..."
-                            className="min-h-[100px] bg-gray-700 border-gray-600 text-gray-100"
+                            className="min-h-[100px] bg-gray-200 dark:bg-gray-700/50 border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-gray-100"
                             onKeyDown={(e) => {
                               if (e.key === 'Enter' && !e.shiftKey) {
                                 e.preventDefault();
@@ -1009,11 +991,11 @@ export default function AgentCreation() {
                           }}
                         >
                           {/* URL Input */}
-                          <div ref={knowledgeBaseSectionRef} className="bg-gray-800 rounded-lg p-6 space-y-4">
+                          <div ref={knowledgeBaseSectionRef} className="bg-gray-100 dark:bg-gray-800 rounded-lg p-6 space-y-4 border border-gray-300 dark:border-gray-700">
                             <div className="flex items-center justify-between">
-                              <h3 className="text-lg font-medium text-gray-100">Add URLs</h3>
+                              <h3 className="text-lg font-medium text-gray-900 dark:text-gray-100">Add URLs</h3>
                               {agentData.knowledgeBase.urls.length > 0 && (
-                                <span className="text-sm text-gray-400">
+                                <span className="text-sm text-gray-600 dark:text-gray-300">
                                   {agentData.knowledgeBase.urls.length} URL{agentData.knowledgeBase.urls.length !== 1 ? 's' : ''} added
                                 </span>
                               )}
@@ -1023,7 +1005,7 @@ export default function AgentCreation() {
                               <div className="flex gap-2">
                                 <Input
                                   placeholder="Enter URL"
-                                  className="flex-1 bg-gray-700 border-gray-600 text-gray-100"
+                                  className="flex-1 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-gray-100"
                                   disabled={false}
                                   onKeyDown={(e) => {
                                     if (e.key === 'Enter') {
@@ -1044,7 +1026,7 @@ export default function AgentCreation() {
                                 />
                                 <Button
                                   variant="outline"
-                                  className="border-gray-600 hover:bg-gray-700 text-white"
+                                  className="border-gray-300 dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-900 dark:text-white"
                                   disabled={false}
                                   onClick={(e) => {
                                     const input = e.currentTarget.previousElementSibling as HTMLInputElement;
@@ -1068,13 +1050,13 @@ export default function AgentCreation() {
                               {agentData.knowledgeBase.urls.length > 0 && (
                                 <div className="space-y-2 max-h-[200px] overflow-y-auto">
                                   {agentData.knowledgeBase.urls.map((url, index) => (
-                                    <div key={index} className="flex items-center gap-2 bg-gray-700/50 rounded-lg p-2 pr-3 group">
-                                      <div className="flex-1 text-sm text-gray-300 truncate">{url}</div>
+                                    <div key={index} className="flex items-center gap-2 bg-gray-200 dark:bg-gray-700/50 rounded-lg p-2 pr-3 group">
+                                      <div className="flex-1 text-sm text-gray-700 dark:text-gray-100 truncate">{url}</div>
                                       <Button
                                         variant="ghost"
                                         size="sm"
                                         disabled={false}
-                                        className="text-gray-400 hover:text-gray-300 hover:bg-gray-600 opacity-0 group-hover:opacity-100 transition-opacity"
+                                        className="text-gray-400 dark:text-gray-300 hover:text-gray-300 dark:hover:text-gray-300 hover:bg-gray-600 opacity-0 group-hover:opacity-100 transition-opacity"
                                         onClick={() => {
                                           setAgentData(prev => ({
                                             ...prev,
@@ -1128,23 +1110,21 @@ export default function AgentCreation() {
                           </div>
 
                           {isKnowledgeBaseSaved && (
-                            <div className="flex justify-center space-x-4">
+                            <div className="flex flex-col sm:flex-row justify-center items-center gap-4 sm:space-x-4 sm:space-y-0 space-y-4">
                               <Button
                                 onClick={() => navigate('/app/call')}
-                                className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white px-8 py-4 text-lg rounded-xl shadow-lg transform hover:scale-105 transition-all duration-200 flex items-center space-x-3"
+                                className="w-full sm:w-auto bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white px-4 sm:px-6 md:px-8 py-2.5 sm:py-3 md:py-4 text-sm sm:text-base md:text-lg rounded-xl shadow-lg transform hover:scale-105 transition-all duration-200 flex items-center justify-center space-x-2 sm:space-x-3 border border-white/10"
                               >
-                                <Phone className="w-5 h-5 animate-pulse" />
-                                <span>Test Your AI Agent</span>
+                                <Phone className="w-4 h-4 sm:w-5 sm:h-5 animate-pulse" />
+                                <span>Test Your Agent Now</span>
                               </Button>
                               
                               <Button
-                                onClick={() => navigate('/app')}                       className="bg-gradient-to-r from-gray-700 to-gray-900 hover:from-gray-800 hover:to-gray-950 text-white px-8 py-4 text-lg rounded-xl shadow-lg transform hover:scale-105 transition-all duration-200 flex items-center space-x-3"
+                                onClick={() => navigate('/app')}
+                                className="w-full sm:w-auto bg-gradient-to-r from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-900 hover:from-gray-200 hover:to-gray-300 dark:hover:from-gray-700 dark:hover:to-gray-800 text-gray-700 dark:text-white px-4 sm:px-6 md:px-8 py-2.5 sm:py-3 md:py-4 text-sm sm:text-base md:text-lg rounded-xl shadow-lg transform hover:scale-105 transition-all duration-200 flex items-center justify-center space-x-2 sm:space-x-3 border border-gray-300 dark:border-white/10"
                               >
-                                <LayoutDashboard className="w-5 h-5" />
-                                <div className="flex flex-col items-start text-left">
-                                  <span>Visit Dashboard</span>
-                                  <span className="text-sm text-gray-300">To make more customizations</span>
-                                </div>
+                                <LayoutDashboard className="w-4 h-4 sm:w-5 sm:h-5 text-gray-500 dark:text-gray-300" />
+                                <span>Go to Dashboard</span>
                               </Button>
                             </div>
                           )}
@@ -1153,19 +1133,19 @@ export default function AgentCreation() {
                             <div className="flex justify-center space-x-4 mt-6">
                               <Button
                                 onClick={() => navigate('/app/call')}
-                                className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white px-8 py-4 text-lg rounded-xl shadow-lg transform hover:scale-105 transition-all duration-200 flex items-center space-x-3"
+                                className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white px-4 sm:px-8 py-3 sm:py-4 text-sm sm:text-lg rounded-xl shadow-lg transform hover:scale-105 transition-all duration-200 flex items-center space-x-2 sm:space-x-3 border border-white/10"
                               >
-                                <Phone className="w-5 h-5 animate-pulse" />
+                                <Phone className="w-4 h-4 sm:w-5 sm:h-5 animate-pulse" />
                                 <span>Test Your AI Agent</span>
                               </Button>
                               
                               <Button
-                                onClick={() => navigate('/app')}                       className="bg-gradient-to-r from-gray-700 to-gray-900 hover:from-gray-800 hover:to-gray-950 text-white px-8 py-4 text-lg rounded-xl shadow-lg transform hover:scale-105 transition-all duration-200 flex items-center space-x-3"
+                                onClick={() => navigate('/app')}                       className="bg-gradient-to-r from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-900 hover:from-gray-200 hover:to-gray-300 dark:hover:from-gray-700 dark:hover:to-gray-800 text-gray-700 dark:text-white px-4 sm:px-8 py-3 sm:py-4 text-sm sm:text-lg rounded-xl shadow-lg transform hover:scale-105 transition-all duration-200 flex items-center space-x-2 sm:space-x-3 border border-gray-300 dark:border-white/10"
                               >
-                                <LayoutDashboard className="w-5 h-5" />
-                                <div className="flex flex-col items-start text-left">
-                                  <span>Visit Dashboard</span>
-                                  <span className="text-sm text-gray-300">To make more customizations</span>
+                                <LayoutDashboard className="w-4 h-4 sm:w-5 sm:h-5 text-gray-500 dark:text-gray-300" />
+                                <div className="flex flex-col items-start">
+                                  <span className="font-medium text-sm sm:text-base">Visit Dashboard</span>
+                                  <span className="text-xs text-gray-500 dark:text-gray-300 font-normal">To make more customizations</span>
                                 </div>
                               </Button>
                             </div>
@@ -1183,25 +1163,23 @@ export default function AgentCreation() {
                         transition={{ duration: 0.5, delay: 0.2 }}
                         className="space-y-6 mt-8">
 
-                        <div className="flex justify-center space-x-4">
+                        <div className="flex flex-col sm:flex-row justify-center items-center gap-4 sm:space-x-4 sm:space-y-0 space-y-4">
                           <Button
                             onClick={() => {
                               // Handle test call action
                               navigate('/app/call');
                             }}
-                            className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white px-8 py-6 text-lg rounded-xl shadow-lg transform hover:scale-105 transition-all duration-200 flex items-center space-x-3"
+                            className="w-full sm:w-auto bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white px-4 sm:px-6 md:px-8 py-2.5 sm:py-3 md:py-4 text-sm sm:text-base md:text-lg rounded-xl shadow-lg transform hover:scale-105 transition-all duration-200 flex items-center justify-center space-x-2 sm:space-x-3 border border-white/10"
                           >
-                            <Phone className="w-6 h-6 animate-pulse" />
+                            <Phone className="w-4 h-4 sm:w-5 sm:h-5 animate-pulse" />
                             <span>Test Your Agent Now</span>
                           </Button>
                           
                           <Button
-                            onClick={() => {
-                              navigate('/app');
-                            }}
-                            className="bg-gradient-to-r from-gray-700 to-gray-900 hover:from-gray-800 hover:to-gray-950 text-white px-8 py-6 text-lg rounded-xl shadow-lg transform hover:scale-105 transition-all duration-200 flex items-center space-x-3"
+                            onClick={() => navigate('/app')}
+                            className="w-full sm:w-auto bg-gradient-to-r from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-900 hover:from-gray-200 hover:to-gray-300 dark:hover:from-gray-700 dark:hover:to-gray-800 text-gray-700 dark:text-white px-4 sm:px-6 md:px-8 py-2.5 sm:py-3 md:py-4 text-sm sm:text-base md:text-lg rounded-xl shadow-lg transform hover:scale-105 transition-all duration-200 flex items-center justify-center space-x-2 sm:space-x-3 border border-gray-300 dark:border-white/10"
                           >
-                            <LayoutDashboard className="w-6 h-6" />
+                            <LayoutDashboard className="w-4 h-4 sm:w-5 sm:h-5 text-gray-500 dark:text-gray-300" />
                             <span>Go to Dashboard</span>
                           </Button>
                         </div>
@@ -1225,11 +1203,11 @@ export default function AgentCreation() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="space-y-4 bg-gray-800 rounded-lg p-6"
+            className="space-y-4 bg-gray-100 dark:bg-gray-800 rounded-lg p-6"
           >
-            <h3 className="text-lg font-medium text-gray-100">Creating Your AI Agent...</h3>
+            <h3 className="text-lg font-medium text-gray-900 dark:text-gray-100">Creating Your AI Agent...</h3>
             <Progress value={processingProgress} className="h-2" />
-            <p className="text-sm text-gray-400">
+            <p className="text-sm text-gray-400 dark:text-gray-300">
               Almost done! We're setting up your agent with all the specified configurations.
             </p>
           </motion.div>
@@ -1240,41 +1218,44 @@ export default function AgentCreation() {
         <div ref={messagesEndRef} />
       </div>
 
+      {/* Extra padding to prevent overlap with fixed buttons */}
+      <div className="pb-24 md:pb-32"></div>
+
       {/* Action Buttons - Shown after knowledge base is saved */}
       {isKnowledgeBaseSaved && (
-        <div className="fixed bottom-12 left-1/2 transform -translate-x-1/2 flex justify-center space-x-6 w-full max-w-4xl px-6 z-50">
+        <div className="fixed bottom-8 md:bottom-16 left-1/2 transform -translate-x-1/2 flex flex-col md:flex-row justify-center md:space-x-6 space-y-4 md:space-y-0 w-full max-w-4xl px-4 md:px-6 py-4 md:py-5 z-50 bg-white/90 dark:bg-gray-900/90 backdrop-blur-sm rounded-t-xl shadow-lg">
           <Button
             onClick={() => navigate('/app/call')}
-            className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white px-12 py-6 text-xl font-medium rounded-2xl shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-200 flex-1 flex items-center justify-center space-x-4 border border-white/10"
+            className="w-full sm:w-auto bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white px-4 sm:px-12 py-4 sm:py-6 text-base sm:text-xl font-medium rounded-xl md:rounded-2xl shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-200 flex-1 flex items-center justify-center space-x-2 sm:space-x-4 border border-white/10"
           >
-            <Phone className="w-6 h-6 animate-pulse text-blue-200" />
+            <Phone className="w-5 h-5 sm:w-6 sm:h-6 animate-pulse text-blue-200" />
             <span>Test Your AI Agent</span>
           </Button>
           
           <Button
             onClick={() => navigate('/app')}
-            className="bg-gradient-to-r from-gray-800 to-gray-900 hover:from-gray-700 hover:to-gray-800 text-white px-12 py-6 text-xl rounded-2xl shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-200 flex-1 flex items-center justify-center space-x-4 border border-white/10"
+            className="w-full sm:w-auto bg-gradient-to-r from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-900 hover:from-gray-200 hover:to-gray-300 dark:hover:from-gray-700 dark:hover:to-gray-800 text-gray-700 dark:text-white px-4 sm:px-12 py-4 sm:py-6 text-base sm:text-xl rounded-xl md:rounded-2xl shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-200 flex-1 flex items-center justify-center space-x-2 sm:space-x-4 border border-gray-300 dark:border-white/10"
           >
-            <LayoutDashboard className="w-6 h-6 text-gray-300" />
+            <LayoutDashboard className="w-5 h-5 sm:w-6 sm:h-6 text-gray-500 dark:text-gray-300" />
             <div className="flex flex-col items-start">
               <span className="font-medium">Visit Dashboard</span>
-              <span className="text-sm text-gray-300 font-normal">To make more customizations</span>
+              <span className="text-sm text-gray-500 dark:text-gray-300 font-normal">To make more customizations</span>
             </div>
           </Button>
         </div>
       )}
       {/* Voice Cloning Modal */}
       {showVoiceModal && (
-      <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50">
-        <div className="bg-gray-900 rounded-xl p-8 w-[560px] space-y-6 shadow-xl border border-gray-800">
+      <div className="fixed inset-0 bg-black/40 dark:bg-black/80 backdrop-blur-sm flex items-center justify-center z-50">
+        <div className="bg-white dark:bg-gray-800 rounded-xl p-8 w-[560px] space-y-6 shadow-xl border border-gray-300 dark:border-gray-700">
           <div className="flex justify-between items-center">
-            <h2 className="text-2xl font-semibold text-white">
+            <h2 className="text-2xl font-semibold text-gray-900 dark:text-gray-100">
               {showRecordingInterface ? 'Create Voice Clone' : 'Clone Your Voice'}
             </h2>
             <Button
               variant="ghost"
               size="sm"
-              className="text-gray-400 hover:text-gray-300"
+              className="text-gray-400 dark:text-gray-300 hover:text-gray-300 dark:hover:text-gray-300"
               onClick={() => setShowVoiceModal(false)}
             >
               <X className="w-4 h-4" />
@@ -1284,27 +1265,27 @@ export default function AgentCreation() {
           <div className="space-y-4">
             {showRecordingInterface ? (
               <div className="space-y-6">
-                <div className="bg-gray-800/50 rounded-lg p-6">
+                <div className="bg-white dark:bg-gray-800/50 rounded-lg p-6 border border-gray-200 dark:border-transparent">
                   <div className="flex items-center justify-center h-24">
                     {isRecordingStarted ? (
                       <div className="text-center space-y-2">
                         <div className="text-red-500 text-lg font-medium animate-pulse">Recording...</div>
-                        <div className="text-gray-400">{`${Math.floor(recordingTime / 60)}:${(recordingTime % 60).toString().padStart(2, '0')} / 0:30`}</div>
+                        <div className="text-gray-500 dark:text-gray-300">{`${Math.floor(recordingTime / 60)}:${(recordingTime % 60).toString().padStart(2, '0')} / 0:30`}</div>
                       </div>
                     ) : (
                       <div className="text-center space-y-2">
-                        <div className="text-gray-400">Click Start to begin recording</div>
+                        <div className="text-gray-500 dark:text-gray-300">Click Start to begin recording</div>
                       </div>
                     )}
                   </div>
                 </div>
 
-                <div className="bg-gray-800/30 rounded-lg p-4 space-y-2">
+                <div className="bg-blue-50 dark:bg-blue-950 rounded-lg p-4 space-y-2 border border-blue-200 dark:border-blue-800/50">
                   <div className="flex items-center gap-2">
                     <div className="w-4 h-4 text-yellow-500">💡</div>
-                    <p className="text-gray-300">Read this script for best results:</p>
+                    <p className="text-gray-700 dark:text-gray-400">Read this script for best results:</p>
                   </div>
-                  <p className="text-gray-400 leading-relaxed">
+                  <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
                     Hello! I'm excited to create my AI voice clone. This recording will help establish my unique voice pattern and characteristics.
                   </p>
                 </div>
@@ -1312,7 +1293,7 @@ export default function AgentCreation() {
                 <div className="flex justify-between items-center pt-4">
                   <Button
                     variant="outline"
-                    className="border-gray-700 hover:bg-gray-700 text-white gap-2"
+                    className="border-gray-300 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-900 dark:text-gray-100 gap-2"
                     onClick={() => setShowRecordingInterface(false)}
                   >
                     <ArrowLeft className="w-4 h-4" />
@@ -1333,7 +1314,7 @@ export default function AgentCreation() {
                   <div className="space-y-2">
                     <Input
                       placeholder="Ex: Professional Male Voice"
-                      className="w-full bg-gray-800/50 border-gray-700 text-white text-lg py-6 px-4"
+                      className="w-full bg-white dark:bg-gray-800 border-gray-300 dark:border-gray-700 text-gray-900 dark:text-gray-100 text-lg py-6 px-4"
                       value={voiceName}
                       onChange={(e) => setVoiceName(e.target.value)}
                     />
@@ -1344,14 +1325,14 @@ export default function AgentCreation() {
                 </div>
                 
                 <div className="space-y-3">
-                  <p className="text-white text-lg font-medium">Choose how you'd like to provide your voice sample.</p>
-                  <p className="text-gray-400 text-base">You can either record directly or upload an audio file.</p>
+                  <p className="text-gray-900 dark:text-white text-lg font-medium">Choose how you'd like to provide your voice sample.</p>
+                  <p className="text-gray-500 dark:text-gray-300 text-base">You can either record directly or upload an audio file.</p>
                 </div>
                 
                 <div className="grid grid-cols-2 gap-4">
                   <Button
                     variant="outline"
-                    className="border-gray-700 hover:bg-gray-700 text-white flex items-center justify-center gap-3 py-6 px-4 text-base font-medium min-w-[220px]"
+                    className="border-gray-300 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-900 dark:text-white flex items-center justify-center gap-3 py-6 px-4 text-base font-medium min-w-[220px]"
                     onClick={() => setShowRecordingInterface(true)}
                   >
                     <Mic className="w-4 h-4 flex-shrink-0" />
@@ -1360,7 +1341,7 @@ export default function AgentCreation() {
                   
                   <Button
                     variant="outline"
-                    className="border-gray-700 hover:bg-gray-700 text-white flex items-center justify-center gap-3 py-6 px-4 text-base font-medium min-w-[220px]"
+                    className="border-gray-300 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-900 dark:text-white flex items-center justify-center gap-3 py-6 px-4 text-base font-medium min-w-[220px]"
                     onClick={() => {
                       // Add upload functionality
                     }}
@@ -1370,13 +1351,13 @@ export default function AgentCreation() {
                   </Button>
                 </div>
                 
-                <div className="bg-blue-950 rounded-lg p-4 flex items-start gap-3 border border-blue-800/50">
-                  <div className="text-blue-400 mt-1">
+                <div className="bg-blue-50 dark:bg-blue-950 rounded-lg p-4 flex items-start gap-3 border border-blue-200 dark:border-blue-800/50">
+                  <div className="text-blue-500 dark:text-blue-400 mt-1">
                     <div className="w-4 h-4 rounded-full border-2 border-current flex items-center justify-center">
                       <span className="text-xs">i</span>
                     </div>
                   </div>
-                  <p className="text-blue-200 text-base">For best results, use a high-quality microphone in a quiet environment.</p>
+                  <p className="text-blue-700 dark:text-blue-200 text-base">For best results, use a high-quality microphone in a quiet environment.</p>
                 </div>
               </div>
             )}
