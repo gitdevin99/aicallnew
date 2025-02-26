@@ -1,27 +1,47 @@
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Link, useNavigate } from "react-router-dom";
+import { ThemeToggle } from "@/components/theme-toggle";
 
 export default function Signup() {
   const navigate = useNavigate();
+  const [formData, setFormData] = useState({
+    fullName: '',
+    email: '',
+    password: ''
+  });
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
 
   const handleSignup = (e: React.FormEvent) => {
     e.preventDefault();
     // Here you would typically handle the signup API call
+    console.log('Signup form submitted:', formData);
     // For now, we'll just navigate to onboarding
     navigate('/app/onboarding/create');
   };
   return (
-    <div className="min-h-screen w-full flex">
+    <div className="min-h-screen w-full flex bg-white dark:bg-gray-950 transition-colors duration-300">
       {/* Left Column - Form */}
       <motion.div 
         initial={{ opacity: 0, x: -20 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.5 }}
-        className="w-full lg:w-1/2 p-8 sm:p-12 xl:p-16 flex flex-col justify-between"
+        className="w-full lg:w-1/2 p-8 sm:p-12 xl:p-16 flex flex-col justify-between relative"
       >
+        {/* Theme Toggle at top right */}
+        <div className="theme-toggle-wrapper absolute top-6 right-6 z-10 bg-gray-50 dark:bg-gray-900 p-1 rounded-full shadow-md">
+          <ThemeToggle />
+        </div>
+        
         <div className="max-w-lg mx-auto w-full flex-1 flex flex-col justify-center">
           <div className="space-y-8">
             {/* Logo */}
@@ -51,27 +71,18 @@ export default function Signup() {
             {/* Form */}
             <form onSubmit={handleSignup} className="space-y-6">
               <div className="space-y-4">
-                <div className="grid grid-cols-2 gap-4">
-                  <div className="space-y-2">
-                    <label className="text-sm font-medium text-gray-700 dark:text-gray-300">
-                      First name
-                    </label>
-                    <Input 
-                      type="text" 
-                      placeholder="John"
-                      className="w-full"
-                    />
-                  </div>
-                  <div className="space-y-2">
-                    <label className="text-sm font-medium text-gray-700 dark:text-gray-300">
-                      Last name
-                    </label>
-                    <Input 
-                      type="text" 
-                      placeholder="Doe"
-                      className="w-full"
-                    />
-                  </div>
+                <div className="space-y-2">
+                  <label className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                    Full name
+                  </label>
+                  <Input 
+                    type="text" 
+                    name="fullName"
+                    value={formData.fullName}
+                    onChange={handleChange}
+                    placeholder="John Doe"
+                    className="w-full"
+                  />
                 </div>
                 <div className="space-y-2">
                   <label className="text-sm font-medium text-gray-700 dark:text-gray-300">
@@ -79,6 +90,9 @@ export default function Signup() {
                   </label>
                   <Input 
                     type="email" 
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
                     placeholder="you@company.com"
                     className="w-full"
                   />
@@ -89,6 +103,9 @@ export default function Signup() {
                   </label>
                   <Input 
                     type="password" 
+                    name="password"
+                    value={formData.password}
+                    onChange={handleChange}
                     placeholder="••••••••"
                     className="w-full"
                   />

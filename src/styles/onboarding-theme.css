@@ -1,0 +1,94 @@
+/* Onboarding theme styles */
+
+/* Global theme overrides for the onboarding flow */
+.dark [role="dialog"],
+.dark .dialog,
+.dark .popover,
+.dark .modal,
+.dark .dropdown-menu {
+  @apply bg-gray-800 border-gray-700 text-gray-100;
+}
+
+.dark [role="button"],
+.dark .btn,
+.dark .button {
+  @apply border-gray-700;
+}
+
+.dark input,
+.dark textarea,
+.dark select {
+  @apply bg-gray-800 border-gray-700 text-gray-100;
+}
+
+.dark input::placeholder,
+.dark textarea::placeholder {
+  @apply text-gray-500;
+}
+
+/* Light mode overrides */
+.light [role="dialog"],
+.light .dialog,
+.light .popover,
+.light .modal,
+.light .dropdown-menu {
+  @apply bg-white border-gray-200 text-gray-900;
+}
+
+.light [role="button"],
+.light .btn,
+.light .button {
+  @apply border-gray-300;
+}
+
+.light input,
+.light textarea,
+.light select {
+  @apply bg-white border-gray-300 text-gray-900;
+}
+
+.light input::placeholder,
+.light textarea::placeholder {
+  @apply text-gray-400;
+}
+
+/* Button text color overrides */
+.light button[variant="outline"] {
+  @apply text-gray-800;
+}
+
+.dark button[variant="outline"] {
+  @apply text-white;
+}
+
+/* Default button text color should be visible */
+button:not([class*="text-"]) {
+  @apply text-gray-800 dark:text-white;
+}
+
+/* Bot message styles */
+.dark .bot-message {
+  @apply bg-gray-800 text-gray-100;
+}
+
+.light .bot-message {
+  @apply bg-gray-100 text-gray-900;
+}
+
+/* User input styles */
+.dark .user-input {
+  @apply bg-gray-700;
+}
+
+.light .user-input {
+  @apply bg-gray-50;
+}
+
+/* Card styles */
+.dark .card {
+  @apply bg-gray-800 border-gray-700;
+}
+
+.light .card {
+  @apply bg-white border-gray-200;
+}

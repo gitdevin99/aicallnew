@@ -13,6 +13,9 @@ import AgentCreation from "./pages/onboarding/AgentCreation";
 import CreateAgent from "./pages/CreateAgent";
 import CampaignDetails from "./pages/CampaignDetails";
 import CallDetails from "./pages/CallDetails";
+import "./styles/onboarding-theme.css";
+import "./styles/button-fixes.css";
+import "./styles/theme-fixes.css";
 
 const queryClient = new QueryClient();
 

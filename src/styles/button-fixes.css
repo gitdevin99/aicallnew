@@ -1,0 +1,26 @@
+/* Button text contrast fixes for light and dark modes */
+
+/* Outline buttons */
+.btn-outline,
+button[class*="outline"] {
+  @apply text-gray-800 dark:text-white !important;
+}
+
+/* Primary buttons with no explicit text color */
+button:not([class*="text-"]) {
+  @apply text-gray-800 dark:text-white !important;
+}
+
+/* Fix for specific button types in onboarding */
+.onboarding-clear-btn {
+  @apply text-gray-800 dark:text-white !important;
+}
+
+.onboarding-template-btn {
+  @apply text-gray-800 dark:text-white !important;
+}
+
+/* Fix for any buttons missing contrast */
+button.low-contrast {
+  @apply text-gray-800 dark:text-white !important;
+}

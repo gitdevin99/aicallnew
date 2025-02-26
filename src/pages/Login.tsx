@@ -3,17 +3,23 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Link } from "react-router-dom";
+import { ThemeToggle } from "@/components/theme-toggle";
 
 export default function Login() {
   return (
-    <div className="min-h-screen w-full flex">
+    <div className="min-h-screen w-full flex bg-white dark:bg-gray-950 transition-colors duration-300">
       {/* Left Column - Form */}
       <motion.div 
         initial={{ opacity: 0, x: -20 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.5 }}
-        className="w-full lg:w-1/2 p-8 sm:p-12 xl:p-16 flex flex-col justify-between"
+        className="w-full lg:w-1/2 p-8 sm:p-12 xl:p-16 flex flex-col justify-between relative"
       >
+        {/* Theme Toggle at top right */}
+        <div className="theme-toggle-wrapper absolute top-6 right-6 z-10 bg-gray-50 dark:bg-gray-900 p-1 rounded-full shadow-md">
+          <ThemeToggle />
+        </div>
+        
         <div className="max-w-lg mx-auto w-full flex-1 flex flex-col justify-center">
           <div className="space-y-8">
             {/* Logo */}
