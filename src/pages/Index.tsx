@@ -46,7 +46,7 @@ const Index = () => {
     switch (section.type) {
       case 'stats':
         return (
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+          <div className="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
             <StatsCard
               title="Calls Handled Today"
               value="25"
@@ -75,7 +75,7 @@ const Index = () => {
         );
       case 'leads':
         return (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
             <LeadCard
               name="John Smith"
               phone="+1 (555) 123-4567"
@@ -102,20 +102,20 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen flex">
+    <div className="min-h-screen flex flex-col sm:flex-row">
       <Sidebar />
       
       {/* Main Content */}
-      <main className="flex-1 p-8 overflow-x-hidden">
+      <main className="flex-1 p-4 sm:p-6 md:p-8 overflow-x-hidden">
         <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="space-y-6"
+            className="space-y-4 sm:space-y-6"
           >
             <div className="flex justify-between items-center">
-              <h1 className="text-3xl font-bold text-gray-900 dark:text-white">Today</h1>
+              <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white">Today</h1>
             </div>
             
             <DndContext
@@ -123,7 +123,7 @@ const Index = () => {
               collisionDetection={closestCenter}
               onDragEnd={handleDragEnd}
             >
-              <div className="space-y-6">
+              <div className="space-y-4 sm:space-y-6">
                 <SortableContext items={sections} strategy={rectSortingStrategy}>
                   {sections.map((section) => (
                     <SortableSection key={section.id} id={section.id}>
