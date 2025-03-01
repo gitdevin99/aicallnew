@@ -45,6 +45,14 @@ export const Sidebar = () => {
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
+    // Force reflow to ensure the menu transitions properly
+    document.body.style.overflow = !isMobileMenuOpen ? 'hidden' : '';
+    // Force repaint for mobile
+    if (!isMobileMenuOpen) {
+      setTimeout(() => {
+        window.dispatchEvent(new Event('resize'));
+      }, 100);
+    }
   };
 
   return (
@@ -52,33 +60,44 @@ export const Sidebar = () => {
       {/* Mobile Menu Button */}
       <button
         onClick={toggleMobileMenu}
-        className="lg:hidden fixed right-4 top-4 z-50 p-2 rounded-md bg-primary hover:bg-primary/90 text-white"
+        className="lg:hidden fixed right-4 top-4 z-[60] p-2.5 rounded-md bg-primary hover:bg-primary/90 text-white shadow-lg"
+        aria-label="Toggle menu"
+        style={{ outline: '2px solid rgba(255,255,255,0.2)' }}
       >
-        {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+        {isMobileMenuOpen ? <X size={24} strokeWidth={2.5} /> : <Menu size={24} strokeWidth={2.5} />}
       </button>
 
       {/* Overlay */}
       {isMobileMenuOpen && (
         <div
-          className="fixed inset-0 bg-black/50 z-40 lg:hidden"
-          onClick={() => setIsMobileMenuOpen(false)}
+          className="fixed inset-0 bg-black/70 z-40 lg:hidden backdrop-blur-sm"
+          onClick={() => {
+            setIsMobileMenuOpen(false);
+            document.body.style.overflow = '';
+          }}
         />
       )}
 
       <aside
-        className={`fixed left-0 top-0 bottom-0 w-[240px] sm:w-[220px] lg:w-64 flex flex-col border-r
-                    bg-white dark:bg-navy shadow-lg lg:shadow-none
+        className={`fixed left-0 top-0 bottom-0 w-[280px] sm:w-[280px] lg:w-64 flex flex-col border-r
+                    bg-white dark:bg-navy shadow-lg dark:shadow-lg
                     transition-transform duration-300 ease-in-out z-50
                     ${isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'}`}
+        style={{ 
+          overflowY: 'auto', 
+          minHeight: '100vh', 
+          maxHeight: '100vh',
+          backgroundColor: 'white' // Force solid white background
+        }}
       >
       {/* Header */}
-      <div className="p-4 flex items-center justify-between">
+      <div className="p-5 flex items-center justify-between bg-white dark:bg-navy shadow-sm dark:shadow-none border-b border-gray-100 dark:border-gray-800">
         <h1 className="text-xl font-semibold text-gray-900 dark:text-white">Dashboard</h1>
         <ThemeToggle />
       </div>
 
       {/* Main Navigation */}
-      <nav className="flex-1 px-4 py-2">
+      <nav className="flex-1 px-4 py-2 overflow-y-auto bg-white dark:bg-navy">
         {/* Main Menu */}
         <ul className="space-y-1">
           <li>
@@ -152,7 +171,7 @@ export const Sidebar = () => {
       </nav>
 
       {/* Bottom Section */}
-      <div className="p-4 space-y-4">
+      <div className="p-4 space-y-4 bg-white dark:bg-navy">
         {/* Storage Section */}
         <div className="space-y-2">
           <p className="text-sm text-gray-900 dark:text-white">Storage Used</p>

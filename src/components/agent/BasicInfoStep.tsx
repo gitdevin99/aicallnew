@@ -65,12 +65,12 @@ export function BasicInfoStep() {
         </Label>
         <div className="flex gap-4">
           <Select value={voice} onValueChange={setVoice}>
-            <SelectTrigger className="w-[200px] bg-gray-800/50 border-gray-700 text-white">
+            <SelectTrigger className="w-[200px] bg-muted/50 border-input text-foreground">
               <SelectValue placeholder="Select a voice" />
             </SelectTrigger>
-            <SelectContent className="bg-gray-800 border-gray-700">
+            <SelectContent className="bg-background border-input">
               {voiceOptions.map((v) => (
-                <SelectItem key={v} value={v} className="text-white hover:bg-gray-700">
+                <SelectItem key={v} value={v} className="text-foreground hover:bg-muted">
                   {v}
                 </SelectItem>
               ))}
@@ -100,12 +100,12 @@ export function BasicInfoStep() {
       {/* Tone Selection */}
       <div className="space-y-4">
         <Label className="text-foreground">Tone</Label>
-        <div className="grid grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
           {toneOptions.map((option) => (
             <motion.button
               key={option.id}
               onClick={() => setTone(option.id)}
-              className={`relative p-4 rounded-lg border transition-all duration-300 text-left ${
+              className={`relative p-3 sm:p-4 rounded-lg border transition-all duration-300 text-left ${
                 tone === option.id
                   ? "border-primary bg-primary/10"
                   : "border-input bg-muted/50 hover:bg-muted"
@@ -122,8 +122,8 @@ export function BasicInfoStep() {
                 />
               )}
               <div className="relative z-10">
-                <div className="font-medium text-foreground mb-1">{option.label}</div>
-                <div className="text-sm text-muted-foreground">{option.description}</div>
+                <div className="font-medium text-foreground text-sm sm:text-base mb-0.5 sm:mb-1">{option.label}</div>
+                <div className="text-xs sm:text-sm text-muted-foreground">{option.description}</div>
               </div>
             </motion.button>
           ))}

@@ -60,48 +60,48 @@ export const CallTableRow = ({
     >
       {/* Neuromorphic background that only shows on hover */}
       <td className="absolute inset-0 z-0 opacity-0 group-hover:opacity-100 transition-all duration-300">
-        <div className="absolute inset-0 bg-gradient-to-r from-gray-50/60 to-white/60 dark:from-gray-800/60 dark:to-gray-900/60 shadow-[inset_0px_0px_20px_rgba(0,0,0,0.02)] dark:shadow-[inset_0px_0px_20px_rgba(255,255,255,0.02)]"></div>
-        <div className="absolute inset-0 bg-gradient-to-r from-blue-500/5 to-purple-500/5 dark:from-blue-500/10 dark:to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-gray-50/30 to-white/30 dark:from-gray-800/30 dark:to-gray-900/30 shadow-[inset_0px_0px_10px_rgba(0,0,0,0.01)] dark:shadow-[inset_0px_0px_10px_rgba(255,255,255,0.01)]"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-blue-500/2 to-purple-500/2 dark:from-blue-500/5 dark:to-purple-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
       </td>
       <td className="relative py-4 px-6 z-20 w-[250px]">
-        <span className="text-gray-900 dark:text-white font-medium">{phoneNumber}</span>
+        <span className="text-gray-900 dark:text-white font-medium relative z-30">{phoneNumber}</span>
       </td>
       <td className="relative py-4 px-6 z-20 w-[150px]">
-        <span className={`relative z-20 inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold capitalize ${getStatusStyles(status)}`}>
+        <span className={`relative z-30 inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold capitalize ${getStatusStyles(status)}`}>
           {status}
         </span>
       </td>
       <td className="relative py-4 px-6 z-20 w-[150px]">
-        <div className="flex items-center gap-2 transition-transform duration-300 group-hover:scale-105 group-hover:translate-x-1">
+        <div className="flex items-center gap-2 transition-transform duration-300 group-hover:scale-105 group-hover:translate-x-1 relative z-30">
           {type === "outbound" ? (
             <PhoneOutgoing className="h-4 w-4 text-blue-600 dark:text-blue-400" />
           ) : (
             <PhoneIncoming className="h-4 w-4 text-blue-600 dark:text-blue-400" />
           )}
-          <span className="text-gray-700 dark:text-gray-200 capitalize font-medium">{type}</span>
+          <span className="text-gray-800 dark:text-gray-200 capitalize font-medium">{type}</span>
         </div>
       </td>
       <td className="relative py-4 px-6 z-20 w-[120px]">
-        <div className="transition-transform duration-300 group-hover:scale-105 group-hover:translate-x-1">
+        <div className="transition-transform duration-300 group-hover:scale-105 group-hover:translate-x-1 relative z-30">
           <span className="text-gray-900 dark:text-white font-medium">{duration}</span>
         </div>
       </td>
       <td className="relative py-4 px-6 z-20 w-[200px]">
-        <div className="transition-transform duration-300 group-hover:scale-105 group-hover:translate-x-1">
+        <div className="transition-transform duration-300 group-hover:scale-105 group-hover:translate-x-1 relative z-30">
           <span className="text-gray-900 dark:text-white font-semibold">{agent}</span>
         </div>
       </td>
       <td className="relative py-4 px-6 z-20 w-[250px]">
-        <span className="text-gray-900 dark:text-white font-medium">{campaign}</span>
+        <span className="text-gray-900 dark:text-white font-medium relative z-30">{campaign}</span>
       </td>
       <td className="relative py-4 px-6 z-20 w-[180px]">
-        <div className="flex flex-col">
+        <div className="flex flex-col relative z-30">
           <span className="text-gray-900 dark:text-gray-100">{date}</span>
           <span className="text-gray-500 dark:text-gray-400 text-sm">{time}</span>
         </div>
       </td>
       <td className="relative py-4 px-6 z-20 w-[120px]">
-        <div className="flex justify-start">
+        <div className="flex justify-start relative z-30">
           <span className="text-gray-900 dark:text-white font-medium text-base">{credits}</span>
         </div>
       </td>

@@ -61,15 +61,15 @@ const Agents = () => {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
-      className="space-y-8 p-6 bg-white/10 dark:bg-gray-900/20 rounded-lg border border-gray-200/20 dark:border-gray-700/30 backdrop-blur-sm"
+      className="space-y-6 sm:space-y-8 p-4 sm:p-6 bg-white/10 dark:bg-gray-900/20 rounded-lg border border-gray-200/20 dark:border-gray-700/30 backdrop-blur-sm"
     >
-      <div className="flex justify-between items-center">
+      <div className="flex flex-col sm:flex-row justify-between gap-4 sm:items-center">
         <div className="space-y-1">
-          <h1 className="text-3xl font-bold text-gray-900 dark:text-gray-100">AI Agents</h1>
+          <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-gray-100">AI Agents</h1>
           <p className="text-gray-500 dark:text-gray-400">Manage and monitor your AI agents</p>
         </div>
         <Button
-          className="gap-2"
+          className="gap-2 w-full sm:w-auto"
           variant="default"
           onClick={() => navigate('/app/agents/create')}
         >
@@ -78,9 +78,9 @@ const Agents = () => {
         </Button>
       </div>
       
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
         {statsData.map((stat) => (
-          <div key={stat.label} className="p-6 rounded-lg bg-gray-100 dark:bg-gray-900/50 space-y-2">
+          <div key={stat.label} className="p-4 sm:p-6 rounded-lg bg-gray-100 dark:bg-gray-900/50 space-y-2">
             <div className="flex items-center gap-2 text-gray-500 dark:text-gray-400 text-sm">
               {stat.icon}
               <span>{stat.label}</span>
@@ -90,9 +90,9 @@ const Agents = () => {
         ))}
       </div>
 
-      <div className="space-y-2">
+      <div className="space-y-3">
         <h2 className="text-xl font-semibold text-gray-900 dark:text-gray-100">Active Agents</h2>
-        <div className="space-y-3">
+        <div className="space-y-3 sm:space-y-4">
           {agentsData.map((agent) => (
             <AgentListItem
               key={agent.name}

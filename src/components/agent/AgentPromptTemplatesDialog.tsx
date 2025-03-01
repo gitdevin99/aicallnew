@@ -1,11 +1,10 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-
-import { motion } from "framer-motion";
-import { Search, Bot } from "lucide-react";
+import { X, Search } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
+import { motion } from "framer-motion";
 
 interface Template {
   id: number;
@@ -207,11 +206,6 @@ export function AgentPromptTemplatesDialog({
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
   const [selectedType, setSelectedType] = useState<"all" | "inbound" | "outbound">("all");
 
-  // Get unique tags
-  const allTags = Array.from(
-    new Set(templates.flatMap((template) => template.tags))
-  );
-
   // Filter templates based on search, tags, and type
   const filteredTemplates = templates.filter((template) => {
     const matchesSearch = template.text
@@ -235,117 +229,138 @@ export function AgentPromptTemplatesDialog({
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="sm:max-w-[900px] bg-background/95 backdrop-blur-xl h-[80vh] overflow-hidden flex flex-col">
-        <DialogHeader>
-          <DialogTitle className="text-2xl font-bold flex items-center gap-2">
-            <Bot className="h-6 w-6" />
-            Agent Prompt Templates
+      <DialogContent className="sm:max-w-[800px] max-h-[90vh] flex flex-col overflow-hidden p-0">
+        <DialogHeader className="p-4 sm:p-6 border-b flex items-center justify-between">
+          <DialogTitle className="text-xl font-semibold">
+            Browse Templates
           </DialogTitle>
+          <X className="h-4 w-4 cursor-pointer" onClick={() => onOpenChange(false)} />
         </DialogHeader>
 
-        {/* Filters */}
-        <div className="space-y-2 flex-shrink-0 pb-2 border-b border-border">
-          <div className="relative">
-            <Search className="absolute left-3 top-2.5 h-4 w-4 text-muted-foreground" />
-            <Input
-              placeholder="Search templates..."
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              className="pl-9"
-            />
+        <div className="flex flex-col overflow-hidden h-full">
+          {/* Search Bar */}
+          <div className="p-4 border-b">
+            <div className="relative">
+              <Search className="absolute left-3 top-2.5 h-4 w-4 text-muted-foreground" />
+              <Input
+                placeholder="Search templates..."
+                className="pl-9"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+              />
+            </div>
           </div>
 
-          {/* Filters Row */}
-          <div className="flex gap-4 items-center">
-            {/* Call Type Filter */}
-            <div className="flex gap-1">
-              <Button
-                variant={selectedType === "all" ? "default" : "outline"}
-                size="sm"
-                onClick={() => setSelectedType("all")}
-                className="rounded-full h-6 px-2 text-[10px] font-medium"
-              >
-                All
-              </Button>
-              <Button
-                variant={selectedType === "inbound" ? "default" : "outline"}
-                size="sm"
-                onClick={() => setSelectedType("inbound")}
-                className="rounded-full h-6 px-2 text-[10px] font-medium"
-              >
-                Inbound
-              </Button>
-              <Button
-                variant={selectedType === "outbound" ? "default" : "outline"}
-                size="sm"
-                onClick={() => setSelectedType("outbound")}
-                className="rounded-full h-6 px-2 text-[10px] font-medium"
-              >
-                Outbound
-              </Button>
-            </div>
-
-            {/* Divider */}
-            <div className="h-4 w-px bg-border"></div>
-
-            {/* Tag Cloud */}
-            <div className="flex flex-wrap gap-0.5 flex-1">
-              {allTags.map((tag) => (
+          {/* Filter Section */}
+          <div className="p-4 border-b">
+            <div className="mb-2">
+              <p className="text-sm font-medium mb-3">Filter by category:</p>
+              <div className="flex flex-wrap gap-2">
                 <Button
-                  key={tag}
-                  variant={selectedTags.includes(tag) ? "default" : "outline"}
+                  variant={selectedType === "all" ? "default" : "outline"}
                   size="sm"
-                  onClick={() => toggleTag(tag)}
-                  className="rounded-full h-6 px-2 text-[10px] font-medium"
+                  onClick={() => setSelectedType("all")}
+                  className="rounded-md h-8 px-3 text-xs font-medium"
                 >
-                  {tag}
+                  All
                 </Button>
-              ))}
+                <Button
+                  variant={selectedType === "inbound" ? "default" : "outline"}
+                  size="sm"
+                  onClick={() => setSelectedType("inbound")}
+                  className="rounded-md h-8 px-3 text-xs font-medium"
+                >
+                  Inbound
+                </Button>
+                <Button
+                  variant={selectedType === "outbound" ? "default" : "outline"}
+                  size="sm"
+                  onClick={() => setSelectedType("outbound")}
+                  className="rounded-md h-8 px-3 text-xs font-medium"
+                >
+                  Outbound
+                </Button>
+              </div>
+            </div>
+
+            <div>
+              <p className="text-sm font-medium mb-3">Industry:</p>
+              <div className="flex flex-wrap gap-2">
+                {["Sales", "Real Estate", "Healthcare", "Education", "Technology", "Finance", "Retail", "Hospitality"].map((industry) => (
+                  <Button
+                    key={industry}
+                    variant={selectedTags.includes(industry.toLowerCase()) ? "default" : "outline"}
+                    size="sm"
+                    onClick={() => toggleTag(industry.toLowerCase())}
+                    className="rounded-md h-8 px-3 text-xs font-medium"
+                  >
+                    {industry}
+                  </Button>
+                ))}
+              </div>
             </div>
           </div>
-        </div>
 
-        {/* Templates List */}
-        <div className="flex-1 overflow-y-auto pr-4 min-h-0">
-          <div className="space-y-2 pt-2">
-            {filteredTemplates.map((template) => (
-              <motion.div
-                key={template.id}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -20 }}
-                className="p-3 rounded-lg border border-border bg-card hover:bg-accent/50 
-                  transition-all duration-200 cursor-pointer
-                  hover:shadow-[0_0.5rem_1rem_rgba(0,0,0,0.1)]
-                  dark:hover:shadow-[0_0.5rem_1rem_rgba(0,0,0,0.2)]
-                  mb-2"
-                onClick={() => onSelectTemplate(template.text)}
-              >
-                <div className="mb-1.5 flex items-center justify-between flex-wrap gap-2">
-                  <div className="flex items-center gap-2">
-                    <span className="text-sm font-medium text-foreground">
-                      {template.category}
-                    </span>
-                    <Badge variant={template.type === "inbound" ? "default" : "secondary"}>
-                      {template.type}
-                    </Badge>
-                  </div>
-                  <div className="flex gap-2">
-                    {template.tags.map((tag) => (
-                      <span
-                        key={tag}
-                        className="text-xs px-2 py-1 rounded-full bg-primary/10 text-primary"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-                <div className="prose prose-sm dark:prose-invert max-w-none overflow-hidden">
-                  <pre className="whitespace-pre-wrap font-sans text-foreground text-sm leading-relaxed mt-0 mb-0">{template.text}</pre>
-                </div>
-              </motion.div>
-            ))}
+          {/* Templates List */}
+          <div className="overflow-y-auto flex-1 p-4">
+            {filteredTemplates.length > 0 ? (
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {filteredTemplates.map((template) => (
+                  <motion.div
+                    key={template.id}
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.2 }}
+                    className="p-4 border rounded-lg bg-card hover:bg-accent/10 transition-colors cursor-pointer"
+                    onClick={() => onSelectTemplate(template.text)}
+                  >
+                    <div className="mb-2">
+                      <h3 className="text-md font-medium">{template.category}</h3>
+                      <div className="flex flex-wrap gap-1 mt-1">
+                        <Badge variant={template.type === "inbound" ? "default" : "secondary"} className="text-xs">
+                          {template.type}
+                        </Badge>
+                        {template.tags.slice(0, 3).map((tag) => (
+                          <Badge key={tag} variant="outline" className="text-xs">
+                            {tag}
+                          </Badge>
+                        ))}
+                      </div>
+                    </div>
+                    <p className="text-sm text-muted-foreground line-clamp-3 mb-3">
+                      {template.text.substring(0, 120)}...
+                    </p>
+                    <Button 
+                      variant="secondary" 
+                      size="sm" 
+                      className="w-full"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        onSelectTemplate(template.text);
+                      }}
+                    >
+                      Use Template
+                    </Button>
+                  </motion.div>
+                ))}
+              </div>
+            ) : (
+              <div className="flex flex-col items-center justify-center h-full">
+                <h4 className="text-lg font-medium text-foreground mb-2">No results found</h4>
+                <p className="text-sm text-muted-foreground mb-4">Try adjusting your filters or search query</p>
+                <Button 
+                  variant="outline" 
+                  size="sm" 
+                  onClick={() => {
+                    setSearchQuery("");
+                    setSelectedTags([]);
+                    setSelectedType("all");
+                  }}
+                >
+                  Clear all filters
+                </Button>
+              </div>
+            )}
           </div>
         </div>
       </DialogContent>

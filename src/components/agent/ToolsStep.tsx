@@ -114,25 +114,27 @@ export function ToolsStep() {
           <div className="space-y-4 mt-4">
             <div className="space-y-2">
               <Label>Calendar Integration</Label>
-              <div className="grid grid-cols-3 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
                 {calendarOptions.map((option) => (
                   <button
                     key={option.id}
                     onClick={() => setSelectedCalendar(option.id)}
-                    className={`p-4 rounded-lg border text-left transition-all flex items-start gap-3 ${
+                    className={`p-3 rounded-lg border text-left transition-all flex items-center gap-3 ${
                       selectedCalendar === option.id
                         ? "border-primary bg-primary/5"
                         : "border-border hover:border-primary/50 bg-background"
                     }`}
                   >
-                    <img
-                      src={option.logo}
-                      alt={`${option.title} logo`}
-                      className="w-8 h-8 object-contain"
-                    />
-                    <div>
-                      <div className="font-medium">{option.title}</div>
-                      <div className="text-sm text-muted-foreground">
+                    <div className="w-8 h-8 flex items-center justify-center flex-shrink-0">
+                      <img
+                        src={option.logo}
+                        alt={`${option.title} logo`}
+                        className="w-6 h-6 object-contain"
+                      />
+                    </div>
+                    <div className="min-w-0">
+                      <div className="font-medium text-sm truncate">{option.title}</div>
+                      <div className="text-xs text-muted-foreground truncate">
                         {option.description}
                       </div>
                     </div>

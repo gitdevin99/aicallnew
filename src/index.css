@@ -143,11 +143,31 @@
   }
 
   .nav-link {
-    @apply relative flex items-center gap-2.5 px-3.5 py-2.5 text-gray-500 hover:text-accent-blue rounded-lg transition-all duration-300 overflow-hidden isolate;
+    @apply relative flex items-center gap-2.5 px-3.5 py-2.5 text-gray-700 font-medium hover:text-accent-blue rounded-lg transition-all duration-300 overflow-hidden isolate;
   }
 
   .dark .nav-link {
-    @apply text-gray-400 hover:text-white;
+    @apply text-gray-300 hover:text-white;
+  }
+  
+  /* Enhanced visibility for mobile */
+  @media (max-width: 1024px) {
+    .nav-link {
+      @apply text-gray-800 font-medium py-3 px-4 border-b border-gray-100 bg-white;
+    }
+    
+    .dark .nav-link {
+      @apply text-white border-gray-700/30 bg-navy;
+    }
+
+    /* Disable all transparency effects on mobile */
+    .glassmorphic, .glass {
+      @apply bg-white dark:bg-navy;
+      backdrop-filter: none !important;
+      -webkit-backdrop-filter: none !important;
+      box-shadow: none !important;
+      background-image: none !important;
+    }
   }
 
   .nav-link::before {
@@ -158,12 +178,24 @@
     @apply from-accent-blue/10 to-accent-green/10;
   }
 
-  .nav-link:hover::before {
-    @apply translate-x-0;
+  /* Only apply hover effect on non-touch devices */
+  @media (hover: hover) and (pointer: fine) {
+    .nav-link:hover::before {
+      @apply translate-x-0;
+    }
   }
 
   aside {
-    @apply glassmorphic border-r border-white/10 dark:border-white/5;
+    @apply border-r border-gray-200 dark:border-white/5;
+  }
+  
+  /* Ensure solid background in mobile view */
+  @media (max-width: 1024px) {
+    aside {
+      @apply bg-white dark:bg-navy;
+      backdrop-filter: none;
+      -webkit-backdrop-filter: none;
+    }
   }
 
   .card {
@@ -190,17 +222,23 @@
     @apply content-[''] absolute inset-0 bg-gradient-to-r from-accent-blue/5 to-accent-green/5 blur-xl opacity-0 transition-all duration-500;
   }
 
-  .nav-link:hover::after {
-    @apply opacity-70;
+  /* Only apply hover effect on non-touch devices */
+  @media (hover: hover) and (pointer: fine) {
+    .nav-link:hover::after {
+      @apply opacity-70;
+    }
   }
 
   .nav-link > svg {
     @apply transition-all duration-500 text-gray-400;
   }
 
-  .nav-link:hover > svg {
-    @apply scale-105 text-accent-blue;
-    filter: drop-shadow(0 0 6px theme('colors.accent.blue/0.4'));
+  /* Only apply hover effect on non-touch devices */
+  @media (hover: hover) and (pointer: fine) {
+    .nav-link:hover > svg {
+      @apply scale-105 text-accent-blue;
+      filter: drop-shadow(0 0 6px theme('colors.accent.blue/0.4'));
+    }
   }
 
   .nav-link.active {
@@ -284,8 +322,11 @@
     @apply transition-all duration-300;
   }
 
-  .hover-glow:hover {
-    filter: drop-shadow(0 0 8px theme('colors.accent.blue'));
+  /* Only apply hover effect on non-touch devices */
+  @media (hover: hover) and (pointer: fine) {
+    .hover-glow:hover {
+      filter: drop-shadow(0 0 8px theme('colors.accent.blue'));
+    }
   }
 }
 

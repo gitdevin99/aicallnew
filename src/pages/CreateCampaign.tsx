@@ -42,10 +42,10 @@ export default function CreateCampaign() {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
-      className="space-y-6 max-w-5xl mx-auto py-8 px-4"
+      className="space-y-4 sm:space-y-6 max-w-5xl mx-auto py-4 sm:py-8 px-3 sm:px-4"
     >
       {/* Header */}
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div className="space-y-1">
           <div className="flex items-center gap-2">
             <Button
@@ -56,15 +56,15 @@ export default function CreateCampaign() {
             >
               <ArrowLeft className="h-5 w-5" />
             </Button>
-            <h1 className="text-3xl font-bold text-foreground">Create Campaign</h1>
+            <h1 className="text-2xl sm:text-3xl font-bold text-foreground">Create Campaign</h1>
           </div>
-          <p className="text-muted-foreground">Set up your outbound campaign configuration</p>
+          <p className="text-muted-foreground text-sm sm:text-base">Set up your outbound campaign configuration</p>
         </div>
-        <div className="flex gap-2">
-          <Button variant="outline" onClick={() => navigate("/app/campaigns")}>
+        <div className="flex gap-2 w-full sm:w-auto">
+          <Button variant="outline" onClick={() => navigate("/app/campaigns")} className="flex-1 sm:flex-initial">
             Cancel
           </Button>
-          <Button>
+          <Button className="flex-1 sm:flex-initial">
             Create Campaign
           </Button>
         </div>
@@ -75,7 +75,7 @@ export default function CreateCampaign() {
         {/* Campaign Details */}
         <div className="space-y-4">
           <h3 className="text-lg font-semibold">Campaign Details</h3>
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div className="space-y-2">
               <Label htmlFor="campaignName">Campaign Name</Label>
               <Input
@@ -101,12 +101,12 @@ export default function CreateCampaign() {
 
         {/* First Message */}
         <div className="space-y-4">
-          <div className="flex justify-between items-center">
+          <div className="flex flex-col sm:flex-row justify-between sm:items-center gap-2 sm:gap-0">
             <h3 className="text-lg font-semibold">First Message</h3>
             <Button 
               variant="outline" 
               size="sm" 
-              className="gap-2"
+              className="gap-2 w-full sm:w-auto"
               onClick={() => setTemplateBrowserOpen(true)}
             >
               <FileText className="h-4 w-4" />
@@ -129,7 +129,7 @@ export default function CreateCampaign() {
         {/* Timezone and Scheduling */}
         <div className="space-y-4">
           <h3 className="text-lg font-semibold">Timezone and Scheduling</h3>
-          <div className="grid grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             <div className="space-y-2">
               <Label>Timezone</Label>
               <Select value={timezone} onValueChange={setTimezone}>
@@ -155,7 +155,7 @@ export default function CreateCampaign() {
           </div>
           <div className="space-y-2">
             <Label>Active Days</Label>
-            <div className="flex gap-2">
+            <div className="flex flex-wrap gap-2">
               {Object.entries(activeDays).map(([day, active]) => (
                 <Button
                   key={day}
@@ -174,7 +174,7 @@ export default function CreateCampaign() {
         {/* Agent and Phone Number */}
         <div className="space-y-4">
           <h3 className="text-lg font-semibold">Agent and Phone Number</h3>
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div className="space-y-2">
               <Label>Agent</Label>
               <Select defaultValue="john-doe">
@@ -205,7 +205,7 @@ export default function CreateCampaign() {
         {/* Retry Settings */}
         <div className="space-y-4">
           <h3 className="text-lg font-semibold">Retry Settings</h3>
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div className="space-y-2">
               <Label>Max Retries</Label>
               <Input type="number" defaultValue="3" min="1" className="bg-muted/50" />
@@ -220,11 +220,11 @@ export default function CreateCampaign() {
         {/* Consent Settings */}
         <div className="space-y-4">
           <h3 className="text-lg font-semibold">Consent Settings</h3>
-          <div className="flex items-center space-x-2">
-            <Switch id="mark-complete" />
-            <Label htmlFor="mark-complete">
+          <div className="flex items-start space-x-2">
+            <Switch id="mark-complete" className="mt-0.5" />
+            <Label htmlFor="mark-complete" className="leading-tight">
               Mark Complete on No Leads
-              <p className="text-sm text-muted-foreground">
+              <p className="text-xs sm:text-sm text-muted-foreground mt-1">
                 Automatically mark the campaign as complete when there are no more leads to call
               </p>
             </Label>
@@ -233,13 +233,13 @@ export default function CreateCampaign() {
 
         {/* Leads Management */}
         <div className="space-y-4">
-          <div className="flex justify-between items-center">
+          <div className="flex flex-col sm:flex-row justify-between sm:items-center gap-2 sm:gap-0">
             <h3 className="text-lg font-semibold">Leads Management</h3>
             <div className="flex gap-2">
               <Button 
                 variant="outline" 
                 size="sm" 
-                className="gap-2"
+                className="gap-2 flex-1 sm:flex-initial"
                 onClick={() => setCsvUploadDialogOpen(true)}
               >
                 <Upload className="h-4 w-4" />
@@ -247,7 +247,7 @@ export default function CreateCampaign() {
               </Button>
               <Button 
                 size="sm"
-                className="gap-2"
+                className="gap-2 flex-1 sm:flex-initial"
                 onClick={() => setNewLeadDialogOpen(true)}
               >
                 <Plus className="h-4 w-4" />

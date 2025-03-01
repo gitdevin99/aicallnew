@@ -132,9 +132,9 @@ export function TemplateBrowser({
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-4xl max-h-[80vh]">
+      <DialogContent className="max-w-4xl max-h-[90vh] w-[95vw] sm:w-auto p-4 sm:p-6">
         <DialogHeader>
-          <DialogTitle className="text-xl font-semibold">Browse Templates</DialogTitle>
+          <DialogTitle className="text-xl font-semibold text-center sm:text-left">Browse Templates</DialogTitle>
         </DialogHeader>
         
         {/* Search Bar */}
@@ -143,7 +143,7 @@ export function TemplateBrowser({
           <input
             type="text"
             placeholder="Search templates..."
-            className="w-full pl-10 pr-4 py-2 rounded-lg focus:outline-none"
+            className="w-full pl-10 pr-4 py-2 rounded-lg focus:outline-none text-sm sm:text-base"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
           />
@@ -157,7 +157,7 @@ export function TemplateBrowser({
               <button
                 key={tag.name}
                 onClick={() => toggleTag(tag.name)}
-                className={`px-3 py-1 rounded-full text-sm font-medium transition-all duration-200 ${
+                className={`px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm font-medium transition-all duration-200 ${
                   selectedTags.includes(tag.name)
                     ? `${tag.color} text-white`
                     : "bg-muted text-muted-foreground hover:bg-muted/80"
@@ -170,38 +170,54 @@ export function TemplateBrowser({
         </div>
 
         {/* Templates Grid */}
-        <ScrollArea className="h-[400px] pr-4">
-          <div className="grid grid-cols-2 gap-4">
-            {filteredTemplates.map((template) => (
-              <div
-                key={template.id}
-                className="p-4 bg-card rounded-lg border hover:border-primary transition-all duration-200"
-              >
-                <h3 className="text-lg font-medium mb-2">{template.title}</h3>
-                <p className="text-sm text-muted-foreground mb-3">{template.useCase}</p>
-                <div className="flex flex-wrap gap-1 mb-3">
-                  {template.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="px-2 py-0.5 bg-muted rounded-full text-xs text-muted-foreground"
-                    >
-                      {tag}
-                    </span>
-                  ))}
+        <ScrollArea className="h-[350px] sm:h-[400px] pr-2 sm:pr-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
+            {filteredTemplates.length > 0 ? (
+              filteredTemplates.map((template) => (
+                <div
+                  key={template.id}
+                  className="p-3 sm:p-4 bg-card rounded-lg border hover:border-primary transition-all duration-200 flex flex-col"
+                >
+                  <h3 className="text-base sm:text-lg font-medium mb-1 sm:mb-2">{template.title}</h3>
+                  <p className="text-xs sm:text-sm text-muted-foreground mb-2 sm:mb-3">{template.useCase}</p>
+                  <div className="flex flex-wrap gap-1 mb-2 sm:mb-3">
+                    {template.tags.map((tag) => (
+                      <span
+                        key={tag}
+                        className="px-1.5 sm:px-2 py-0.5 bg-muted rounded-full text-[10px] sm:text-xs text-muted-foreground"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                  <p className="text-xs sm:text-sm text-foreground mb-3 sm:mb-4 line-clamp-3 flex-grow">{template.content}</p>
+                  <Button
+                    variant="outline"
+                    className="w-full h-8 sm:h-10 text-xs sm:text-sm hover:bg-muted text-primary"
+                    onClick={() => {
+                      onSelectTemplate(template.content);
+                      onOpenChange(false);
+                    }}
+                  >
+                    Use Template
+                  </Button>
                 </div>
-                <p className="text-sm text-foreground mb-4 line-clamp-3">{template.content}</p>
-                <Button
-                  variant="outline"
-                  className="w-full hover:bg-muted text-primary"
+              ))
+            ) : (
+              <div className="col-span-1 sm:col-span-2 flex flex-col items-center justify-center p-6 text-center">
+                <p className="text-muted-foreground mb-2">No templates match your search criteria</p>
+                <Button 
+                  variant="outline" 
+                  size="sm" 
                   onClick={() => {
-                    onSelectTemplate(template.content);
-                    onOpenChange(false);
+                    setSearchQuery("");
+                    setSelectedTags([]);
                   }}
                 >
-                  Use Template
+                  Clear Filters
                 </Button>
               </div>
-            ))}
+            )}
           </div>
         </ScrollArea>
       </DialogContent>
